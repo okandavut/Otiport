@@ -1,8 +1,13 @@
-<Project>
-
+<Project ToolsVersion="15.0">
+  <PropertyGroup>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>2.0</OldToolsVersion>
+  </PropertyGroup>
   <ItemGroup>
     <Folder Include="public\" />
     <Folder Include="src\" />
   </ItemGroup>
-
 </Project>
