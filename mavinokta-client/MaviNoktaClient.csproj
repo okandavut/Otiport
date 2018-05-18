@@ -1,0 +1,8 @@
+<Project>
+
+  <ItemGroup>
+    <Folder Include="public\" />
+    <Folder Include="src\" />
+  </ItemGroup>
+
+</Project>
