@@ -1,0 +1,6 @@
+\\Mac\Home\Documents\NETCore\Projects\MaviNokta\MaviNokta.Entities\bin\Debug\netstandard2.0\MaviNokta.Entities.deps.json
+\\Mac\Home\Documents\NETCore\Projects\MaviNokta\MaviNokta.Entities\bin\Debug\netstandard2.0\MaviNokta.Entities.dll
+\\Mac\Home\Documents\NETCore\Projects\MaviNokta\MaviNokta.Entities\obj\Debug\netstandard2.0\MaviNokta.Entities.csprojResolveAssemblyReference.cache
+\\Mac\Home\Documents\NETCore\Projects\MaviNokta\MaviNokta.Entities\obj\Debug\netstandard2.0\MaviNokta.Entities.csproj.CoreCompileInputs.cache
+\\Mac\Home\Documents\NETCore\Projects\MaviNokta\MaviNokta.Entities\obj\Debug\netstandard2.0\MaviNokta.Entities.AssemblyInfoInputs.cache
+\\Mac\Home\Documents\NETCore\Projects\MaviNokta\MaviNokta.Entities\obj\Debug\netstandard2.0\MaviNokta.Entities.AssemblyInfo.cs
