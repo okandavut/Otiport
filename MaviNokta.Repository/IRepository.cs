@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -12,6 +13,7 @@ namespace MaviNokta.Repository
         where T : BaseEntity<TProperty>
         where TProperty : struct
     {
+        //Add async prefix to method name
         DbSet<T> Table { get; set; }
         Task<IQueryable<T>> All();
         Task<IQueryable<T>> AllByDefault();
@@ -21,6 +23,10 @@ namespace MaviNokta.Repository
         Task<IQueryable<T>> PagingByDefault(int pageIndex = 0, int pageItem = 10);
         Task<T> GetById(TProperty id);
 
+        Task<IQueryable<T>> WhereByDefault(Expression<Func<T, bool>> where);
+        Task<IQueryable<T>> WhereByActive(Expression<Func<T, bool>> where);
+
+        Task<bool> ExistsByDefault(Expression<Func<T, bool>> exists);
 
         Task<bool> Add(T entity);
         Task<bool> Update(T entity);

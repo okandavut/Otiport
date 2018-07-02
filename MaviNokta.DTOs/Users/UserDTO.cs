@@ -12,5 +12,6 @@ namespace MaviNokta.DTOs.Users
         }
 
         public string Username { get; set; }
+        public string EmailAddress { get; set; }
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using MaviNokta.Entities;
@@ -65,6 +66,11 @@ namespace MaviNokta.Repository.Implementations
             return await Delete(entity, isSoftDelete);
         }
 
+        public async Task<bool> ExistsByDefault(Expression<Func<T, bool>> exists)
+        {
+            return await Table.Where(x => x.IsActive && !x.IsDeleted).CountAsync(exists) > 0;
+        }
+
         public async Task<T> GetById(TProperty id)
         {
             return await Table.FindAsync(id);
@@ -84,6 +90,16 @@ namespace MaviNokta.Repository.Implementations
         {
             Table.Update(entity);
             return await Save();
+        }
+
+        public async Task<IQueryable<T>> WhereByActive(Expression<Func<T, bool>> where)
+        {
+            return await Task.Run(() => Table.Where(x => x.IsActive && !x.IsDeleted).Where(where));
+        }
+
+        public Task<IQueryable<T>> WhereByDefault(Expression<Func<T, bool>> where)
+        {
+            return Task.Run(() => Table.Where(x => x.IsActive).Where(where));
         }
 
         #region Helpers
