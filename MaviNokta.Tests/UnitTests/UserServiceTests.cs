@@ -6,13 +6,12 @@ using FluentAssertions;
 using MaviNokta.Entities.Users;
 using MaviNokta.Models.Users;
 using MaviNokta.Repository;
-using MaviNokta.Services;
 using MaviNokta.Services.Implementations;
 using Microsoft.Extensions.Logging;
 using Moq;
 using Xunit;
 
-namespace MaviNokta.Tests.IntegrationTests
+namespace MaviNokta.Tests.UnitTests
 {
     public class UserServiceTests : TestBase
     {
