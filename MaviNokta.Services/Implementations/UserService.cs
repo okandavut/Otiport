@@ -5,6 +5,7 @@ using MaviNokta.DTOs.Users;
 using MaviNokta.Entities.Users;
 using MaviNokta.Models.Users;
 using MaviNokta.Repository;
+using MaviNokta.Util.Extensions;
 using Microsoft.Extensions.Logging;
 
 namespace MaviNokta.Services.Implementations

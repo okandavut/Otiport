@@ -17,7 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="UnitTests\" />
+    <Folder Include="IntegrationTests\" />
   </ItemGroup>
 
   <ItemGroup>
