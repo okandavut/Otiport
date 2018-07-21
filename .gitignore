@@ -261,5 +261,4 @@ __pycache__/
 *.pyc
 
 *.pubxml
-/BlogApp.API/appsettings.Development.json
 /MaviNokta.API/appsettings.Development.json
