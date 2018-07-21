@@ -19,6 +19,7 @@ namespace MaviNokta.Entities.Users
         public string Birthdate { get; set; }
         public string Country { get; set; }
         public string City { get; set; }
+        public string District { get; set; }
         public int ProfilePictureUrl { get; set; }
         public int UserGroupId { get; set; }  
 
