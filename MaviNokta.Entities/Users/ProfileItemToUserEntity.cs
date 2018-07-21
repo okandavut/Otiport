@@ -5,8 +5,8 @@ using System.Text;
 
 namespace MaviNokta.Entities.Users
 {
-    [Table("ProfileItemToUser")]
-    public class ProfileItemToUserEntity : BaseEntity<Guid>
+    [Table("ProfileItemsToUsers")]
+    public class ProfileItemToUserEntity : BaseEntity<int>
     {
         public int ProfileItemId { get; set; }
         public int UserId { get; set; }

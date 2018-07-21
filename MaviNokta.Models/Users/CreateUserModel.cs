@@ -22,7 +22,7 @@ namespace MaviNokta.Models.Users
         [EmailAddress]
         public string EmailAddress { get; set; }
 
-        [MaxLength(15)]
+        [MaxLength(25)]
         [MinLength(3)]
         [Required]
         public string Name { get; set; }
@@ -33,7 +33,7 @@ namespace MaviNokta.Models.Users
         public string Surname { get; set; }
 
         [Required]
-        public DateTime Birthdate { get; set; }
+        public DateTime BirthDate { get; set; }
 
         public string Country { get; set; }
 
@@ -41,7 +41,7 @@ namespace MaviNokta.Models.Users
 
         public string District { get; set; }
 
-        public int ProfilePictureUrl { get; set; }
+        public string ProfilePictureUrl { get; set; }
 
     }
 }
