@@ -21,5 +21,27 @@ namespace MaviNokta.Models.Users
         [Required]
         [EmailAddress]
         public string EmailAddress { get; set; }
+
+        [MaxLength(25)]
+        [MinLength(3)]
+        [Required]
+        public string Name { get; set; }
+
+        [MaxLength(15)]
+        [MinLength(2)]
+        [Required]
+        public string Surname { get; set; }
+
+        [Required]
+        public DateTime BirthDate { get; set; }
+
+        public string Country { get; set; }
+
+        public string City { get; set; }
+
+        public string District { get; set; }
+
+        public string ProfilePictureUrl { get; set; }
+
     }
 }
