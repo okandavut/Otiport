@@ -20,11 +20,10 @@ namespace MaviNokta.Entities.Users
         public string Country { get; set; }
         public string City { get; set; }
         public string District { get; set; }
-        public int ProfilePictureId { get; set; }
+        public int ProfilePictureUrl { get; set; }
         public int UserGroupId { get; set; }
 
         //relations
         public virtual UserGroupEntity UserGroup { get; set; }
-        public virtual ProfilePicturesEntity ProfilePictures { get; set; }
     }
 }
