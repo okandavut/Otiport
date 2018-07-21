@@ -16,7 +16,7 @@ namespace MaviNokta.Entities.Users
         public string Password { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }
-        public string Birthdate { get; set; }
+        public DateTime Birthdate { get; set; }
         public string Country { get; set; }
         public string City { get; set; }
         public string District { get; set; }
