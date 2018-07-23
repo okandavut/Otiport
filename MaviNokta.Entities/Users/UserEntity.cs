@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MaviNokta.Entities.Users
@@ -25,5 +26,6 @@ namespace MaviNokta.Entities.Users
 
         //relations
         public virtual UserGroupEntity UserGroup { get; set; }
+        public virtual List<PatientEntity> Patients { get; set; }
     }
 }
