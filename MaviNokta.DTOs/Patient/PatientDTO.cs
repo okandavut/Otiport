@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using MaviNokta.Entities;
 
 namespace MaviNokta.DTOs.Patient {
     public class PatientDTO : BaseEntity<Guid> {
@@ -20,6 +21,7 @@ namespace MaviNokta.DTOs.Patient {
         public string Country { get; set; }
         public string City { get; set; }
         public string District { get; set; }
+        public string ProfilePictureUrl { get; set; }
 
     }
 }
