@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="7.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Otiport.DTOs\Otiport.DTOs.csproj" />
+    <ProjectReference Include="..\Otiport.Entities\Otiport.Entities.csproj" />
+    <ProjectReference Include="..\Otiport.Models\Otiport.Models.csproj" />
+    <ProjectReference Include="..\Otiport.Repository\Otiport.Repository.csproj" />
+    <ProjectReference Include="..\Otiport.Util\Otiport.Util.csproj" />
+  </ItemGroup>
+
+</Project>
