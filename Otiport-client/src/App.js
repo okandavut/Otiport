@@ -1,16 +1,13 @@
-import React, { Component } from "react";
-import logo from "./logo.svg";
-import "./App.css";
-import HomePageContainer from "../src/containers/HomePageContainer";
+import * as React from "react";
+import { Switch, Route } from "react-router-dom";
+import HomePageContainer from "./containers/HomePageContainer";
 
-class App extends Component {
+export default class App extends React.Component {
   render() {
     return (
-      <div className="App">
-        <HomePageContainer />
-      </div>
+      <Switch>
+        <Route path={"/"} component={HomePageContainer} />
+      </Switch>
     );
   }
 }
-
-export default App;

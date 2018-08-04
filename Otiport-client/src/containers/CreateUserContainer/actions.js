@@ -7,11 +7,11 @@ export function changeIsLoading(isLoading: boolean) {
   };
 }
 
-export function fetchUser(username, password) {
+export function createUser(name,surname,email) {
   return dispatch => {
     dispatch(changeIsLoading(true));
 
-    //Call Api
+    //Call Api for register
 
     dispatch(changeIsLoading(false));
   };
