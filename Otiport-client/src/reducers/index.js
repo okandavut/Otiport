@@ -1,8 +1,7 @@
 import { combineReducers } from "redux";
 import HomePageReducer from "../containers/HomePageContainer/reducer";
-import CreateUserReducer from "../containers/CreateUserContainer/reducer";
-
+import CreateUserPageReducer from "../containers/HomePageContainer/reducer";
 export default combineReducers({
   homePageReducer: HomePageReducer,
-  createUserReducer: CreateUserReducer
+  createUserPageReducer: CreateUserPageReducer
 });
