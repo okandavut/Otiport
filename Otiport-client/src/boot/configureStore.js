@@ -10,7 +10,11 @@ const persistConfiguration = {
   storage: storage
 };
 
+<<<<<<< HEAD
 let persistorReducer  = persistReducer(persistConfiguration, reducers);
+=======
+const persistorReducer = persistReducer(persistConfiguration, reducers);
+>>>>>>> cad88298972590414e9fd53b5f72e93f7a88301e
 const logger = createLogger({});
 
 export default function configureStore(onComplete: () => void): any {
