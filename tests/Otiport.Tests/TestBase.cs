@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 using AutoFixture;
 using Moq;
 
@@ -10,44 +8,44 @@ namespace Otiport.Tests
     {
         private readonly MockRepository _mockRepository;
 
-        protected IFixture FixtureRepository { get; set; }
+        protected IFixture FixtureRepository { get; }
 
         public TestBase()
         {
-            this._mockRepository = new MockRepository(MockBehavior.Strict);
-            this.FixtureRepository = (IFixture)new Fixture();
-            this.FinalizeSetUp();
+            _mockRepository = new MockRepository(MockBehavior.Strict);
+            FixtureRepository = new Fixture();
+            FinalizeSetUp();
         }
 
 
         protected Mock<T> MockFor<T>() where T : class
         {
-            return this._mockRepository.Create<T>();
+            return _mockRepository.Create<T>();
         }
 
         protected Mock<T> MockFor<T>(params object[] @params) where T : class
         {
-            return this._mockRepository.Create<T>(@params);
+            return _mockRepository.Create<T>(@params);
         }
 
         protected T Create<T>()
         {
-            return this.FixtureRepository.Create<T>();
+            return FixtureRepository.Create<T>();
         }
 
         protected IEnumerable<T> CreateMany<T>()
         {
-            return this.FixtureRepository.CreateMany<T>();
+            return FixtureRepository.CreateMany<T>();
         }
 
         protected IEnumerable<T> CreateMany<T>(int count)
         {
-            return this.FixtureRepository.CreateMany<T>(count);
+            return FixtureRepository.CreateMany<T>(count);
         }
 
         protected void EnableCustomization(ICustomization customization)
         {
-            customization.Customize(this.FixtureRepository);
+            customization.Customize(FixtureRepository);
         }
 
         protected virtual void FinalizeTearDown()

@@ -1,20 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
+﻿using System.Net;
 using System.Threading.Tasks;
 using Otiport.API.Helpers;
 using Microsoft.AspNetCore.Mvc;
-using Otiport.API.Data.DTOs.Users;
+using Otiport.API.Contract.Request.Users;
+using Otiport.API.Contract.Response.Users;
 using Otiport.API.Models;
-using Otiport.API.Models.Users;
 using Otiport.API.Services;
-using Swashbuckle.AspNetCore.SwaggerGen;
 
 namespace Otiport.API.Controllers
 {
     [Route("users")]
-    public class UsersController : BaseController
+    public class UsersController : ApiControllerBase
     {
         private readonly IUserService _userService;
         public UsersController(IUserService userService)
@@ -22,19 +18,19 @@ namespace Otiport.API.Controllers
             _userService = userService;
         }
 
-        [ProducesResponseType(typeof(UserDTO), (int)HttpStatusCode.Created)]
+        [ProducesResponseType(typeof(CreateUserResponse), (int)HttpStatusCode.Created)]
         [ProducesResponseType(typeof(ErrorResponse), (int)HttpStatusCode.InternalServerError)]
         [ProducesResponseType(typeof(ErrorResponse), (int)HttpStatusCode.BadRequest)]
         [HttpPost]
-        public async Task<IActionResult> Create([FromBody] CreateUserModel model)
+        public async Task<IActionResult> Create([FromBody] CreateUserRequest request)
         {
-            var user = await _userService.CreateUser(model);
-            if (user == null)
+            var response = await _userService.CreateUserAsync(request);
+            if (response == null)
             {
                 return BadRequest();
             }
 
-            return StatusCode((int)HttpStatusCode.Created, user);
+            return StatusCode((int)HttpStatusCode.Created, response);
         }
     }
 }

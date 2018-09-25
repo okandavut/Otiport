@@ -1,9 +1,9 @@
-﻿using System;
+using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace Otiport.API.Models.Users
+namespace Otiport.API.Contract.Models
 {
-    public class CreateUserModel
+    public class UserModel
     {
         [MaxLength(15)]
         [MinLength(5)]

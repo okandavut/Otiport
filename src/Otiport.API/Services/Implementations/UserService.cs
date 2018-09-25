@@ -1,56 +1,53 @@
-﻿using AutoMapper;
+﻿using System;
+using System.Net;
 using Microsoft.Extensions.Logging;
-using Otiport.API.Data.DTOs.Users;
-using Otiport.API.Data.Entities.Users;
 using Otiport.API.Extensions;
-using Otiport.API.Models.Users;
 using Otiport.API.Repositories;
-using System;
 using System.Threading.Tasks;
+using Otiport.API.Contract.Request.Users;
+using Otiport.API.Contract.Response.Users;
+using Otiport.API.Mappers;
 
 namespace Otiport.API.Services.Implementations
 {
     public class UserService : IUserService
     {
         private readonly ILogger<UserService> _logger;
-        private readonly IMapper _mapper;
-        private readonly IRepository<UserEntity, Guid> _userRepository;
-        public UserService(IRepository<UserEntity, Guid> userRepository, IMapper mapper, ILogger<UserService> logger)
+        private readonly IUserMapper _userMapper;
+        private readonly IUserRepository _userRepository;
+
+        public UserService(IUserRepository userRepository, IUserMapper userMapper, ILogger<UserService> logger)
         {
             _userRepository = userRepository;
-            _mapper = mapper;
+            _userMapper = userMapper;
             _logger = logger;
         }
 
-        public async Task<UserDTO> CreateUser(CreateUserModel model)
+        public async Task<CreateUserResponse> CreateUserAsync(CreateUserRequest request)
         {
-            model.Password = model.Password.Hash(HashType.SHA256);
-            bool isExists = await _userRepository.ExistsByDefault(x =>
-                x.Username == model.Username || x.EmailAddress == model.EmailAddress);
+            var response = new CreateUserResponse();
+            request.UserModel.Password = request.UserModel.Password.Hash(HashType.SHA256);
+            bool isExists =
+                await _userRepository.IsExistsUserAsync(request.UserModel.Username, request.UserModel.EmailAddress);
 
             if (!isExists)
             {
                 //TODO: Create User
-                var entity = new UserEntity()
-                {
-                    Username = model.Username,
-                    Password = model.Password,
-                    EmailAddress = model.EmailAddress
-                };
+                var userEntity = _userMapper.ToEntity(request.UserModel);
 
-                bool isSuccess = await _userRepository.Add(entity);
-                if (isSuccess)
+                userEntity = await _userRepository.AddAsync(userEntity);
+                if (userEntity != null && userEntity.Id != Guid.Empty)
                 {
-                    return _mapper.Map<UserEntity, UserDTO>(entity);
+                    response.StatusCode = (int) HttpStatusCode.Created;
+                    return response;
                 }
-                else
-                {
-                    //TODO: Add Logging
-                    _logger.LogWarning("");
-                }
+
+                //TODO: Add Logging
+                _logger.LogWarning("");
             }
 
-            return null;
+            response.StatusCode = (int) HttpStatusCode.InternalServerError;
+            return response;
         }
     }
 }

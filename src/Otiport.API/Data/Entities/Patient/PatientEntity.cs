@@ -7,7 +7,7 @@ namespace Otiport.API.Data.Entities.Patient {
     public class PatientEntity : BaseEntity<Guid> {
 
         public PatientEntity () {
-            this.Id = Guid.NewGuid ();
+            Id = Guid.NewGuid ();
         }
         public string Name { get; set; }
         public string Surname { get; set; }

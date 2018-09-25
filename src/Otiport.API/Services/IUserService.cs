@@ -1,11 +1,11 @@
-﻿using Otiport.API.Data.DTOs.Users;
-using Otiport.API.Models.Users;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
+using Otiport.API.Contract.Request.Users;
+using Otiport.API.Contract.Response.Users;
 
 namespace Otiport.API.Services
 {
     public interface IUserService
     {
-        Task<UserDTO> CreateUser(CreateUserModel model);
+        Task<CreateUserResponse> CreateUserAsync(CreateUserRequest request);
     }
 }

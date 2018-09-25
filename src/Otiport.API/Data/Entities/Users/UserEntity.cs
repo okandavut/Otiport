@@ -10,7 +10,7 @@ namespace Otiport.API.Data.Entities.Users
     {
         public UserEntity()
         {
-            this.Id = Guid.NewGuid();
+            Id = Guid.NewGuid();
         }
 
         public string EmailAddress { get; set; }

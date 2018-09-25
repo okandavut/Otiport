@@ -1,35 +1,10 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Otiport.API.Data;
-using System;
-using System.Linq;
-using System.Linq.Expressions;
+﻿using System;
 using System.Threading.Tasks;
 
 namespace Otiport.API.Repositories
 {
-    public interface IRepository<T, TProperty>
-        where T : BaseEntity<TProperty>
-        where TProperty : struct
+    public interface IRepository : IDisposable
     {
-        //Add async prefix to method name
-        DbSet<T> Table { get; set; }
-        Task<IQueryable<T>> All();
-        Task<IQueryable<T>> AllByDefault();
-        Task<IQueryable<T>> AllNotDeleted();
-
-        Task<IQueryable<T>> Paging(int pageIndex = 0, int pageItem = 10);
-        Task<IQueryable<T>> PagingByDefault(int pageIndex = 0, int pageItem = 10);
-        Task<T> GetById(TProperty id);
-
-        Task<IQueryable<T>> WhereByDefault(Expression<Func<T, bool>> where);
-        Task<IQueryable<T>> WhereByActive(Expression<Func<T, bool>> where);
-
-        Task<bool> ExistsByDefault(Expression<Func<T, bool>> exists);
-
-        Task<bool> Add(T entity);
-        Task<bool> Update(T entity);
-        Task<bool> Delete(T entity, bool isSoftDelete = true);
-        Task<bool> Delete(TProperty id, bool isSoftDelete = true);
-
+        Task<bool> SaveAsync();
     }
 }
