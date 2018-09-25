@@ -1,4 +1,6 @@
-﻿using Otiport.API.Data.Entities.Users;
+﻿using System;
+using Microsoft.EntityFrameworkCore;
+using Otiport.API.Data.Entities.Users;
 
 namespace Otiport.API.Repositories
 {
@@ -12,5 +14,6 @@ namespace Otiport.API.Repositories
 
         public virtual DbSet<UserEntity> Users { get; set; }
         public virtual DbSet<UserGroupEntity> UserGroups { get; set; }
+
     }
 }

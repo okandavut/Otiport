@@ -1,3 +1,5 @@
+using System;
+
 namespace Otiport.API.Data.DTOs.Patient {
     public class PatientDTO : BaseEntity<Guid> {
 

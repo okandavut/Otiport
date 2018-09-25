@@ -1,4 +1,10 @@
-﻿using Otiport.API.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using Otiport.API.Data;
+using System;
+using System.Diagnostics;
+using System.Linq;
+using System.Linq.Expressions;
+using System.Threading.Tasks;
 
 namespace Otiport.API.Repositories.Implementations
 {

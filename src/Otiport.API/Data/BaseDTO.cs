@@ -1,4 +1,6 @@
-﻿namespace Otiport.API.Data
+﻿using System;
+
+namespace Otiport.API.Data
 {
     public class BaseDTO<TProperty> where TProperty : struct
     {

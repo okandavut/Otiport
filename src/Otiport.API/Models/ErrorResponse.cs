@@ -1,4 +1,6 @@
-﻿namespace Otiport.API.Models
+﻿using System.Collections.Generic;
+
+namespace Otiport.API.Models
 {
     public class ErrorResponse
     {

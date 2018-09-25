@@ -1,8 +1,12 @@
-﻿using Otiport.API.Data.DTOs.Users;
+﻿using AutoMapper;
+using Microsoft.Extensions.Logging;
+using Otiport.API.Data.DTOs.Users;
 using Otiport.API.Data.Entities.Users;
 using Otiport.API.Extensions;
 using Otiport.API.Models.Users;
 using Otiport.API.Repositories;
+using System;
+using System.Threading.Tasks;
 
 namespace Otiport.API.Services.Implementations
 {

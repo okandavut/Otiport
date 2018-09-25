@@ -1,4 +1,7 @@
-﻿namespace Otiport.API.Repositories.Extensions
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+
+namespace Otiport.API.Repositories.Extensions
 {
     public static class DIExtensions
     {

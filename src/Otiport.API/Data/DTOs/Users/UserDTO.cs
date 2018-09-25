@@ -1,4 +1,6 @@
-﻿namespace Otiport.API.Data.DTOs.Users
+﻿using System;
+
+namespace Otiport.API.Data.DTOs.Users
 {
     public class UserDTO : BaseDTO<Guid>
     {

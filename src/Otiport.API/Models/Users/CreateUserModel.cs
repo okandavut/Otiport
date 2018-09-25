@@ -1,4 +1,7 @@
-﻿namespace Otiport.API.Models.Users
+﻿using System;
+using System.ComponentModel.DataAnnotations;
+
+namespace Otiport.API.Models.Users
 {
     public class CreateUserModel
     {

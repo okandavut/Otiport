@@ -1,4 +1,6 @@
-﻿namespace Otiport.API.Data.Entities.ProfileItem
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace Otiport.API.Data.Entities.ProfileItem
 {
     [Table("ProfileItems")]
     public class ProfileItemEntity : BaseEntity<int>

@@ -1,4 +1,7 @@
 ﻿using Otiport.API.Data.Entities.Patient;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Otiport.API.Data.Entities.Users
 {

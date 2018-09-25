@@ -1,4 +1,7 @@
-﻿namespace Otiport.API.Data.Entities.Users
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace Otiport.API.Data.Entities.Users
 {
     [Table("UserGroups")]
     public class UserGroupEntity : BaseEntity<int>

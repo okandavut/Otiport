@@ -22,9 +22,9 @@ namespace Otiport.API.Controllers
             _userService = userService;
         }
 
-        [SwaggerResponse((int)HttpStatusCode.Created, typeof(UserDTO))]
-        [SwaggerResponse((int)HttpStatusCode.InternalServerError, typeof(ErrorResponse))]
-        [SwaggerResponse((int)HttpStatusCode.BadRequest, typeof(ErrorResponse))]
+        [ProducesResponseType(typeof(UserDTO), (int)HttpStatusCode.Created)]
+        [ProducesResponseType(typeof(ErrorResponse), (int)HttpStatusCode.InternalServerError)]
+        [ProducesResponseType(typeof(ErrorResponse), (int)HttpStatusCode.BadRequest)]
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] CreateUserModel model)
         {
@@ -34,7 +34,7 @@ namespace Otiport.API.Controllers
                 return BadRequest();
             }
 
-            return StatusCode((int) HttpStatusCode.Created, user);
+            return StatusCode((int)HttpStatusCode.Created, user);
         }
     }
 }

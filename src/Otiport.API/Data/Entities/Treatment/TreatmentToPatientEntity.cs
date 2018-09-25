@@ -1,4 +1,5 @@
 using Otiport.API.Data.Entities.Patient;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Otiport.API.Data.Entities.Treatment {
     [Table ("ThreatmentToPatients")]

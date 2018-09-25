@@ -3,12 +3,12 @@ using System.Threading.Tasks;
 using AutoFixture;
 using AutoMapper;
 using FluentAssertions;
-using Otiport.Entities.Users;
-using Otiport.Models.Users;
-using Otiport.Repository;
-using Otiport.Services.Implementations;
 using Microsoft.Extensions.Logging;
 using Moq;
+using Otiport.API.Data.Entities.Users;
+using Otiport.API.Models.Users;
+using Otiport.API.Repositories;
+using Otiport.API.Services.Implementations;
 using Xunit;
 
 namespace Otiport.Tests.UnitTests

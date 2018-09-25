@@ -1,4 +1,7 @@
-﻿namespace Otiport.API.Data
+﻿using System;
+using System.ComponentModel.DataAnnotations;
+
+namespace Otiport.API.Data
 {
     public class BaseEntity<TProperty> where TProperty : struct
     {
