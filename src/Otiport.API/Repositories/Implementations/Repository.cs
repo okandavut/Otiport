@@ -1,14 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
-using Otiport.Entities;
-using Microsoft.EntityFrameworkCore;
+﻿using Otiport.API.Data;
 
-namespace Otiport.Repository.Implementations
+namespace Otiport.API.Repositories.Implementations
 {
     public class Repository<T, TProperty> : IRepository<T, TProperty>
         where T : BaseEntity<TProperty>

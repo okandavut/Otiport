@@ -1,14 +1,10 @@
-﻿using System;
-using System.Threading.Tasks;
-using AutoMapper;
-using Otiport.DTOs.Users;
-using Otiport.Entities.Users;
-using Otiport.Models.Users;
-using Otiport.Repository;
-using Otiport.Util.Extensions;
-using Microsoft.Extensions.Logging;
+﻿using Otiport.API.Data.DTOs.Users;
+using Otiport.API.Data.Entities.Users;
+using Otiport.API.Extensions;
+using Otiport.API.Models.Users;
+using Otiport.API.Repositories;
 
-namespace Otiport.Services.Implementations
+namespace Otiport.API.Services.Implementations
 {
     public class UserService : IUserService
     {

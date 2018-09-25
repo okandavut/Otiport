@@ -1,9 +1,4 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
-using Otiport.Entities;
-
-namespace Otiport.DTOs.Patient {
+namespace Otiport.API.Data.DTOs.Patient {
     public class PatientDTO : BaseEntity<Guid> {
 
         public PatientDTO () {

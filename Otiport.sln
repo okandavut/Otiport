@@ -9,6 +9,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{10EDC6D8
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "client", "client", "{5736C19F-7F56-4FDA-83DB-086A7B38559D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Otiport.API", "src\Otiport.API\Otiport.API.csproj", "{E50EE714-6464-46B5-85BD-DD55F1631CBD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Otiport.Tests", "tests\Otiport.Tests\Otiport.Tests.csproj", "{8E9B2352-9E74-4FA5-9B91-1F0A49FA8B3F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -17,11 +21,29 @@ Global
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E50EE714-6464-46B5-85BD-DD55F1631CBD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E50EE714-6464-46B5-85BD-DD55F1631CBD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E50EE714-6464-46B5-85BD-DD55F1631CBD}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{E50EE714-6464-46B5-85BD-DD55F1631CBD}.Debug|x86.Build.0 = Debug|Any CPU
+		{E50EE714-6464-46B5-85BD-DD55F1631CBD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E50EE714-6464-46B5-85BD-DD55F1631CBD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E50EE714-6464-46B5-85BD-DD55F1631CBD}.Release|x86.ActiveCfg = Release|Any CPU
+		{E50EE714-6464-46B5-85BD-DD55F1631CBD}.Release|x86.Build.0 = Release|Any CPU
+		{8E9B2352-9E74-4FA5-9B91-1F0A49FA8B3F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8E9B2352-9E74-4FA5-9B91-1F0A49FA8B3F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8E9B2352-9E74-4FA5-9B91-1F0A49FA8B3F}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{8E9B2352-9E74-4FA5-9B91-1F0A49FA8B3F}.Debug|x86.Build.0 = Debug|Any CPU
+		{8E9B2352-9E74-4FA5-9B91-1F0A49FA8B3F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8E9B2352-9E74-4FA5-9B91-1F0A49FA8B3F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8E9B2352-9E74-4FA5-9B91-1F0A49FA8B3F}.Release|x86.ActiveCfg = Release|Any CPU
+		{8E9B2352-9E74-4FA5-9B91-1F0A49FA8B3F}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
+		{E50EE714-6464-46B5-85BD-DD55F1631CBD} = {5A91CC69-A2F6-41B0-BFE3-17F2A49DBE14}
+		{8E9B2352-9E74-4FA5-9B91-1F0A49FA8B3F} = {10EDC6D8-5A8A-4BCA-B45B-A9F671586F99}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {3B217AAA-DD01-421A-A481-059F6587476B}

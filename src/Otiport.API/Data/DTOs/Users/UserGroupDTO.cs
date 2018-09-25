@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Otiport.DTOs.Users
+﻿namespace Otiport.API.Data.DTOs.Users
 {
     public class UserGroupDTO : BaseDTO<int>
     {

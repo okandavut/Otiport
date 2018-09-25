@@ -1,7 +1,6 @@
-using System;
-using System.ComponentModel.DataAnnotations.Schema;
+using Otiport.API.Data.Entities.Users;
 
-namespace Otiport.Entities.Users {
+namespace Otiport.API.Data.Entities.Patient {
     [Table ("Patients")]
     public class PatientEntity : BaseEntity<Guid> {
 

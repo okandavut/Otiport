@@ -1,8 +1,6 @@
-﻿using Otiport.Entities.Users;
-using Microsoft.EntityFrameworkCore;
-using System;
+﻿using Otiport.API.Data.Entities.Users;
 
-namespace Otiport.Repository
+namespace Otiport.API.Repositories
 {
     public class OtiportDbContext : DbContext
     {

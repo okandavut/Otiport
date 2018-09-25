@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Text;
-
-namespace Otiport.Entities
+﻿namespace Otiport.API.Data
 {
     public class BaseEntity<TProperty> where TProperty : struct
     {

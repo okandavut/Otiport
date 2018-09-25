@@ -1,4 +1,4 @@
-﻿namespace Otiport.Util.Extensions
+﻿namespace Otiport.API.Extensions
 {
     public static class StringsExtensions
     {
@@ -17,11 +17,5 @@
                     return text;
             }
         }
-    }
-
-    public enum HashType
-    {
-        MD5,
-        SHA256
     }
 }

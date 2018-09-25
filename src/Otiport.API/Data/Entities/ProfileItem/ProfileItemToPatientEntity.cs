@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Text;
+﻿using Otiport.API.Data.Entities.Patient;
 
-namespace Otiport.Entities.Users {
+namespace Otiport.API.Data.Entities.ProfileItem {
     [Table ("ProfileItemsToPatients")]
     public class ProfileItemToPatientEntity : BaseEntity<int> {
 

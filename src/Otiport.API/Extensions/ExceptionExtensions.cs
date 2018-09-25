@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
-using Otiport.Models;
+using Otiport.API.Models;
 
 namespace Otiport.API.Extensions
 {

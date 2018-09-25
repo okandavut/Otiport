@@ -4,11 +4,11 @@ using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 using Otiport.API.Helpers;
-using Otiport.DTOs.Users;
-using Otiport.Models;
-using Otiport.Models.Users;
-using Otiport.Services;
 using Microsoft.AspNetCore.Mvc;
+using Otiport.API.Data.DTOs.Users;
+using Otiport.API.Models;
+using Otiport.API.Models.Users;
+using Otiport.API.Services;
 using Swashbuckle.AspNetCore.SwaggerGen;
 
 namespace Otiport.API.Controllers

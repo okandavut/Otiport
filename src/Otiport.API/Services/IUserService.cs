@@ -1,8 +1,7 @@
-﻿using Otiport.DTOs.Users;
-using Otiport.Models.Users;
-using System.Threading.Tasks;
+﻿using Otiport.API.Data.DTOs.Users;
+using Otiport.API.Models.Users;
 
-namespace Otiport.Services
+namespace Otiport.API.Services
 {
     public interface IUserService
     {

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Otiport.DTOs.Users {
+﻿namespace Otiport.API.Data.DTOs.ProfileItem {
     public class ProfileItemDTO : BaseDTO<int> {
         public string Title { get; set; }
         public string Description { get; set; }
