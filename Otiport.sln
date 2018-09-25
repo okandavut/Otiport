@@ -7,8 +7,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{5A91CC69-A2F
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{10EDC6D8-5A8A-4BCA-B45B-A9F671586F99}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "client", "client", "{5736C19F-7F56-4FDA-83DB-086A7B38559D}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Otiport.API", "src\Otiport.API\Otiport.API.csproj", "{E50EE714-6464-46B5-85BD-DD55F1631CBD}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Otiport.Tests", "tests\Otiport.Tests\Otiport.Tests.csproj", "{8E9B2352-9E74-4FA5-9B91-1F0A49FA8B3F}"
