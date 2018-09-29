@@ -7,5 +7,6 @@ namespace Otiport.API.Services
     public interface IUserService
     {
         Task<CreateUserResponse> CreateUserAsync(CreateUserRequest request);
+        Task<LoginResponse> LoginAsync(LoginRequest request);
     }
 }

@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Otiport.API.Contract.Request.Users;
 using Otiport.API.Contract.Response.Users;
 using Otiport.API.Mappers;
+using Otiport.API.Providers;
 
 namespace Otiport.API.Services.Implementations
 {
@@ -15,12 +16,15 @@ namespace Otiport.API.Services.Implementations
         private readonly ILogger<UserService> _logger;
         private readonly IUserMapper _userMapper;
         private readonly IUserRepository _userRepository;
+        private readonly ITokenProvider _tokenProvider;
 
-        public UserService(IUserRepository userRepository, IUserMapper userMapper, ILogger<UserService> logger)
+        public UserService(IUserRepository userRepository, IUserMapper userMapper, ILogger<UserService> logger,
+            ITokenProvider tokenProvider)
         {
             _userRepository = userRepository;
             _userMapper = userMapper;
             _logger = logger;
+            _tokenProvider = tokenProvider;
         }
 
         public async Task<CreateUserResponse> CreateUserAsync(CreateUserRequest request)
@@ -47,6 +51,25 @@ namespace Otiport.API.Services.Implementations
             }
 
             response.StatusCode = (int) HttpStatusCode.InternalServerError;
+            return response;
+        }
+
+        public async Task<LoginResponse> LoginAsync(LoginRequest request)
+        {
+            var response = new LoginResponse();
+
+            request.Password = request.Password.Hash(HashType.SHA256);
+            var userEntity = await _userRepository.GetUserByCredentialsAsync(request.EmailAddress, request.Password);
+            if (userEntity == null)
+            {
+                //TODO (peacecwz): Logging
+                response.StatusCode = (int) HttpStatusCode.NotFound;
+                return response;
+            }
+
+            response.AccessToken =
+                await _tokenProvider.GenerateTokenAsync(userEntity.Id, userEntity.EmailAddress, userEntity.UserGroupId);
+            response.StatusCode = (int) HttpStatusCode.OK;
             return response;
         }
     }

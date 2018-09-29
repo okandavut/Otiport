@@ -7,5 +7,6 @@ namespace Otiport.API.Repositories
     {
         Task<bool> IsExistsUserAsync(string username, string emailAddress);
         Task<UserEntity> AddAsync(UserEntity entity);
+        Task<UserEntity> GetUserByCredentialsAsync(string emailAddress, string password);
     }
 }

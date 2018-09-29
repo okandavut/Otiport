@@ -32,5 +32,15 @@ namespace Otiport.API.Controllers
 
             return StatusCode((int)HttpStatusCode.Created, response);
         }
+        [HttpPost]
+        public async Task<IActionResult> Login([FromBody] LoginRequest request) {
+            var response = await _userService.LoginAsync(request);
+            if (response == null)
+            {
+                return BadRequest();
+            }
+
+            return StatusCode((int)HttpStatusCode.OK, response);
+        }
     }
 }
