@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Otiport.API.Contract.Request.Users;
 using Otiport.API.Contract.Response.Users;
 using Otiport.API.Mappers;
+using Otiport.API.Controllers;
 
 namespace Otiport.API.Services.Implementations
 {
@@ -48,6 +49,11 @@ namespace Otiport.API.Services.Implementations
 
             response.StatusCode = (int) HttpStatusCode.InternalServerError;
             return response;
+        }
+
+        public Task<LoginResponse> LoginAsync(LoginRequest request)
+        {
+            throw new NotImplementedException();
         }
     }
 }
