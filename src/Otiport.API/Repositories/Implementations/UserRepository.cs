@@ -48,5 +48,10 @@ namespace Otiport.API.Repositories.Implementations
 
             return isSuccess ? entity : null;
         }
+
+        public Task<UserEntity> GetUserByCredentialsAsync(string emailAddress, string password)
+        {
+            return _dbContext.Users.SingleOrDefaultAsync(x => x.EmailAddress == emailAddress && x.Password == password);
+        }
     }
 }
