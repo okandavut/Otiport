@@ -1,9 +1,6 @@
 ﻿using Moq;
 using Otiport.API.Controllers;
 using Otiport.API.Services;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 using Xunit;
 using AutoFixture;

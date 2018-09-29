@@ -2,11 +2,9 @@
 using System.Threading.Tasks;
 using AutoFixture;
 using FluentAssertions;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Moq;
 using Otiport.API.Contract.Request.Users;
-using Otiport.API.Contract.Response.Users;
 using Otiport.API.Data.Entities.Users;
 using Otiport.API.Mappers;
 using Otiport.API.Providers;
