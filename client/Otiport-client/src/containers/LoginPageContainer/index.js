@@ -10,7 +10,7 @@ export interface State {}
 
 class LoginPageContainer extends React.Component<Props, State> {
   login(emailAddress, password) {
-    alert("Login olunuyor...");
+    console.log("Login olunuyor...");
     login(emailAddress, password);
   }
 
