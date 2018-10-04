@@ -1,5 +1,4 @@
 import * as React from "react";
-import "bulma/css/bulma.css";
 
 export interface Props {
   isLoading: boolean;

@@ -1,4 +1,5 @@
 import * as React from "react";
+import "bulma/css/bulma.css";
 import { Switch, Route } from "react-router-dom";
 import HomePageContainer from "./containers/HomePageContainer";
 import LoginPageContainer from "./containers/LoginPageContainer";
