@@ -2,7 +2,7 @@ class Endpoints {
   baseApiPath = "";
 
   users = this.baseApiPath + "/users";
-  login = this.users + "/logn";
+  login = this.users + "/login";
   register = this.users + "/register";
 }
 
