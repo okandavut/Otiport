@@ -51,20 +51,19 @@ export default class LoginPage extends React.Component<Props, State> {
     }
     return (
       <div className="container">
-       <section class="hero">
-            <div class="hero-body">
-              <div class="container">
-                <h1 class="title">Otiport</h1>
-                <h2 class="subtitle">Login</h2>
-              </div>
+        <section class="hero">
+          <div class="hero-body">
+            <div class="container">
+              <h1 class="title">Otiport</h1>
+              <h2 class="subtitle">Login</h2>
             </div>
-          </section>
-        <div className="columns level-item ">
-         
-          <div class="column is-half ">
+          </div>
+        </section>
+        <div className="columns level-item level-right">
+          <div class="column is-one-third">
             <div className="field">
               <label className="label">Email</label>
-              <div className="control has-icons-left has-icons-right">
+              <div className="control">
                 <input
                   type="email"
                   id="emailAddress"
@@ -77,20 +76,13 @@ export default class LoginPage extends React.Component<Props, State> {
                     })
                   }
                 />
-
-                <span className="icon is-small is-left">
-                  <i className="fas fa-envelope" />
-                </span>
-                <span className="icon is-small is-right">
-                  <i className="fas fa-exclamation-triangle" />
-                </span>
               </div>
               <p className="help is-danger">{this.state.warning}</p>
             </div>
 
-            <div classNameName="field">
-              <label classNameName="label">Password</label>
-              <div className="control has-icons-left has-icons-right">
+            <div className="field">
+              <label className="label">Password</label>
+              <div className="control">
                 <input
                   type="password"
                   id="password"
@@ -98,13 +90,6 @@ export default class LoginPage extends React.Component<Props, State> {
                   value={this.state.password}
                   onChange={this.handleChange}
                 />
-
-                <span classNameName="icon is-small is-left">
-                  <i className="fas fa-envelope" />
-                </span>
-                <span className="icon is-small is-right">
-                  <i className="fas fa-exclamation-triangle" />
-                </span>
               </div>
             </div>
             <br />
