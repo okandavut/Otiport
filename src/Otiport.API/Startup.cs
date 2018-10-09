@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Otiport.API.Extensions;
 using Swashbuckle.AspNetCore.Swagger;
 
 namespace Otiport.API
@@ -20,6 +21,11 @@ namespace Otiport.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddaDataLayer()
+                .AddRepositoryLayer()
+                .AddMapperLayer()
+                .AddServicesLayer();
+            
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new Info()
