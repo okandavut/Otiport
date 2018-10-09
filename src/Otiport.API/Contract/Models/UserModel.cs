@@ -22,12 +22,16 @@ namespace Otiport.API.Contract.Models
         [MaxLength(25)]
         [MinLength(3)]
         [Required]
-        public string Name { get; set; }
+        public string FirstName { get; set; }
 
+        [MaxLength(25)]
+        [MinLength(3)]
+        public string MiddleName { get; set; }
+        
         [MaxLength(15)]
         [MinLength(2)]
         [Required]
-        public string Surname { get; set; }
+        public string LastName { get; set; }
 
         [Required]
         public DateTime BirthDate { get; set; }

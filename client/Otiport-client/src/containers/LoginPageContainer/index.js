@@ -5,6 +5,7 @@ import { login } from "./actions";
 export interface Props {
   isLoading: boolean;
   accessToken: string;
+  login: Function;
 }
 export interface State {}
 
@@ -12,11 +13,11 @@ class LoginPageContainer extends React.Component<Props, State> {
   login(emailAddress, password) {
     console.log("Login olunuyor...");
     console.log(emailAddress, password);
-    login(emailAddress, password);
+    this.props.login(emailAddress, password);
   }
 
   render() {
-    return <LoginPage login={this.login} isLoading={this.props.isLoading} />;
+    return <LoginPage login={this.login.bind(this)} isLoading={this.props.isLoading} />;
   }
 }
 

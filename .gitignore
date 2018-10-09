@@ -263,5 +263,7 @@ __pycache__/
 *.pyc
 
 *.pubxml
-/MaviNokta.API/appsettings.Development.json
-client/Otiport-client/yarn.lock
+**/appsettings.Development.json
+**/yarn.lock
+src/Otiport.API/appsettings.Development.json
+

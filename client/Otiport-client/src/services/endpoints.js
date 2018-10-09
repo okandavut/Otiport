@@ -1,5 +1,5 @@
 class Endpoints {
-  baseApiPath = "";
+  baseApiPath = "http://localhost:5000";
 
   users = this.baseApiPath + "/users";
   login = this.users + "/login";

@@ -51,16 +51,16 @@ export default class LoginPage extends React.Component<Props, State> {
     }
     return (
       <div className="container">
-        <section class="hero">
-          <div class="hero-body">
-            <div class="container">
-              <h1 class="title">Otiport</h1>
-              <h2 class="subtitle">Login</h2>
+        <section className="hero">
+          <div className="hero-body">
+            <div className="container">
+              <h1 className="title">Otiport</h1>
+              <h2 className="subtitle">Login</h2>
             </div>
           </div>
         </section>
         <div className="columns level-item level-right">
-          <div class="column is-one-third">
+          <div className="column is-one-third">
             <div className="field">
               <label className="label">Email</label>
               <div className="control">
