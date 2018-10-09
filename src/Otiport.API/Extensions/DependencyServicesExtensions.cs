@@ -4,6 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Otiport.API.Data;
 using Otiport.API.Mappers;
 using Otiport.API.Mappers.Implementations;
+using Otiport.API.Providers;
 using Otiport.API.Repositories;
 using Otiport.API.Repositories.Implementations;
 using Otiport.API.Services;
@@ -38,7 +39,13 @@ namespace Otiport.API.Extensions
         
         public static IServiceCollection AddMapperLayer(this IServiceCollection services)
         {
-            services.AddScoped<IUserMapper, UserMapper>();
+            services.AddTransient<IUserMapper, UserMapper>();
+            return services;
+        }
+
+        public static IServiceCollection AddProviders(this IServiceCollection services)
+        {
+            services.AddTransient<ITokenProvider, TokenProvider>();
             return services;
         }
     }

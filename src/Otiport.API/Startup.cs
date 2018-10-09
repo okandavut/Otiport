@@ -24,8 +24,9 @@ namespace Otiport.API
             services.AddaDataLayer()
                 .AddRepositoryLayer()
                 .AddMapperLayer()
+                .AddProviders()
                 .AddServicesLayer();
-            
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new Info()
@@ -48,14 +49,16 @@ namespace Otiport.API
             }
             else
             {
-                app.UseHsts();
-
+                //app.UseHsts();
             }
 
             app.UseSwagger();
             app.UseSwaggerUI(c => { c.SwaggerEndpoint("/swagger/v1/swagger.json", "Otiport API"); });
-
-            app.UseHttpsRedirection();
+            app.UseCors(options =>
+            {
+                options.AllowAnyOrigin().AllowAnyHeader().AllowCredentials().AllowAnyMethod().Build();
+            });
+            //app.UseHttpsRedirection();
             app.UseMvc();
         }
     }
