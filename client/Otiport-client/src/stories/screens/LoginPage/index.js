@@ -51,6 +51,7 @@ export default class LoginPage extends React.Component<Props, State> {
     }
     return (
       <div className="container">
+        <a href="/">Anasayfaya dön</a>
         <section className="hero">
           <div className="hero-body">
             <div className="container">
