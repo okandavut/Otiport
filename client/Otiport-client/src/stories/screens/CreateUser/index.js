@@ -70,12 +70,12 @@ export default class CreateUser extends React.Component<Props, State> {
               onChange={this.handleChange}
             />
             {this.validator.message(
-              "username",
-              this.state.username,
-              "required",
+              "email",
+              this.state.emailAddress,
+              "required|email",
               false,
               {
-                required: "Lütfen kullanıcı adınızı giriniz. ",
+                required: "Lütfen email adresi giriniz. ",
                 default: "Invalid."
               }
             )}

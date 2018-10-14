@@ -1,4 +1,5 @@
 import * as React from "react";
+import SimpleReactValidator from "simple-react-validator";
 
 export interface Props {
   isLoading: boolean;
@@ -13,6 +14,7 @@ export interface State {
 export default class LoginPage extends React.Component<Props, State> {
   constructor(props) {
     super(props);
+    this.validator = new SimpleReactValidator();
     this.state = {
       emailAddress: "",
       password: "",
@@ -21,21 +23,15 @@ export default class LoginPage extends React.Component<Props, State> {
     };
   }
   sendLogin = () => {
-    if (this.state.isEmailValid)
+    if (this.validator.allValid()) {
       this.props.login(this.state.emailAddress, this.state.password);
-    else alert("Lütfen email adresini kontrol ediniz.");
-  };
-  isValidEmailAddress(address) {
-    let re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    if (re.test(this.state.emailAddress)) {
-      this.state.isEmailValid = true;
-      return (this.state.warning = "");
     } else {
-      this.state.isEmailValid = false;
-      return (this.state.warning =
-        "Email adresi hatalı lütfen kontrol ediniz.");
+      this.validator.showMessages();
+      // rerender to show messages for the first time
+      this.forceUpdate();
     }
-  }
+  };
+
   handleChange = event => {
     this.setState({
       [event.target.id]: event.target.value
@@ -71,14 +67,18 @@ export default class LoginPage extends React.Component<Props, State> {
                   className="input"
                   value={this.state.emailAddress}
                   onChange={this.handleChange}
-                  onBlur={() =>
-                    this.setState({
-                      emailIsValid: this.isValidEmailAddress(this.state.email)
-                    })
-                  }
                 />
+                {this.validator.message(
+                  "email",
+                  this.state.emailAddress,
+                  "required|email",
+                  false,
+                  {
+                    required: "Lütfen email adresi giriniz. ",
+                    default: "Email adresi formatı düzgün olmalıdır."
+                  }
+                )}
               </div>
-              <p className="help is-danger">{this.state.warning}</p>
             </div>
 
             <div className="field">
@@ -91,6 +91,16 @@ export default class LoginPage extends React.Component<Props, State> {
                   value={this.state.password}
                   onChange={this.handleChange}
                 />
+                {this.validator.message(
+                  "password",
+                  this.state.password,
+                  "required",
+                  false,
+                  {
+                    required: "Lütfen şifrenizi giriniz. ",
+                    default: "Invalid."
+                  }
+                )}
               </div>
             </div>
             <br />
