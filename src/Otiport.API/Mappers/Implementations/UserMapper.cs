@@ -9,9 +9,9 @@ namespace Otiport.API.Mappers.Implementations
         {
             return new UserModel()
             {
-                City = entity.City,
-                Country = entity.Country,
-                District = entity.District,
+                CityId = entity.CityId,
+                CountryId = entity.CountryId,
+                DistrictId = entity.DistrictId,
                 FirstName = entity.FirstName,
                 MiddleName = entity.MiddleName,
                 LastName = entity.LastName,
@@ -27,9 +27,9 @@ namespace Otiport.API.Mappers.Implementations
         {
             return new UserEntity()
             {
-                City = model.City,
-                Country = model.Country,
-                District = model.District,
+                CityId = model.CityId,
+                CountryId = model.CountryId,
+                DistrictId = model.DistrictId,
                 FirstName = model.FirstName,
                 MiddleName = model.MiddleName,
                 LastName = model.LastName,

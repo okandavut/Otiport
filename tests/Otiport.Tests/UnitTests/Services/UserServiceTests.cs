@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using AutoFixture;
 using FluentAssertions;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using Moq;
 using Otiport.API.Contract.Request.Users;
@@ -22,6 +23,7 @@ namespace Otiport.Tests.UnitTests.Services
         private readonly Mock<IUserRepository> _userRepositoryMock;
         private readonly IUserService _userService;
         private readonly Mock<ITokenProvider> _tokenProviderMock;
+        private readonly Mock<IConfiguration> _configurationMock;
 
         public UserServiceTests()
         {
@@ -29,8 +31,10 @@ namespace Otiport.Tests.UnitTests.Services
             _mapperMock = MockFor<IUserMapper>();
             _loggerMock = MockFor<ILogger<UserService>>();
             _tokenProviderMock = MockFor<ITokenProvider>();
+            _configurationMock = MockFor<IConfiguration>();
+
             _userService = new UserService(_userRepositoryMock.Object, _mapperMock.Object, _loggerMock.Object,
-                _tokenProviderMock.Object);
+                _tokenProviderMock.Object, _configurationMock.Object);
         }
 
         [Fact]
