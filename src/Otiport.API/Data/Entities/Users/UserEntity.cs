@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
+using Otiport.API.Data.Entities.AddressInformations;
 
 namespace Otiport.API.Data.Entities.Users
 {
@@ -20,14 +21,17 @@ namespace Otiport.API.Data.Entities.Users
         public string MiddleName { get; set; }
         public string LastName { get; set; }
         public DateTime BirthDate { get; set; }
-        public string Country { get; set; }
-        public string City { get; set; }
-        public string District { get; set; }
+        public int CountryId { get; set; }
+        public int CityId { get; set; }
+        public int DistrictId { get; set; }
         public string ProfilePictureUrl { get; set; }
-        public int UserGroupId { get; set; }  
+        public int UserGroupId { get; set; }
 
         //relations
         public virtual UserGroupEntity UserGroup { get; set; }
         public virtual List<PatientEntity> Patients { get; set; }
+        public virtual CountryEntity CountryItem { get; set; }
+        public virtual CityEntity CCityItem { get; set; }
+        public virtual DistrictEntity DistrictItem { get; set; }
     }
 }
