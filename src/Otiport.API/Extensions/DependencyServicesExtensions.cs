@@ -28,12 +28,14 @@ namespace Otiport.API.Extensions
         public static IServiceCollection AddRepositoryLayer(this IServiceCollection services)
         {
             services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IAdressInformationRepository, AdressInformationRepository>();
             return services;
         }
         
         public static IServiceCollection AddServicesLayer(this IServiceCollection services)
         {
             services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IAddressInformationService, AddressInformationService>();
             return services;
         }
         
