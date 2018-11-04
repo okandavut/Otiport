@@ -8,6 +8,8 @@ using Otiport.API.Contract.Request.Users;
 using Otiport.API.Contract.Response.Users;
 using Otiport.API.Mappers;
 using Otiport.API.Providers;
+using Microsoft.Extensions.Configuration;
+using Otiport.API.Common;
 
 namespace Otiport.API.Services.Implementations
 {
@@ -17,16 +19,17 @@ namespace Otiport.API.Services.Implementations
         private readonly IUserMapper _userMapper;
         private readonly IUserRepository _userRepository;
         private readonly ITokenProvider _tokenProvider;
+        private readonly IConfiguration _configuration;
 
         public UserService(IUserRepository userRepository, IUserMapper userMapper, ILogger<UserService> logger,
-            ITokenProvider tokenProvider)
+            ITokenProvider tokenProvider, IConfiguration configuration)
         {
             _userRepository = userRepository;
             _userMapper = userMapper;
             _logger = logger;
             _tokenProvider = tokenProvider;
+            _configuration = configuration;
         }
-
         public async Task<CreateUserResponse> CreateUserAsync(CreateUserRequest request)
         {
             var response = new CreateUserResponse();
@@ -38,19 +41,18 @@ namespace Otiport.API.Services.Implementations
             {
                 //TODO: Create User
                 var userEntity = _userMapper.ToEntity(request.UserModel);
+                userEntity.UserGroupId = _configuration.GetValue<int>(Contants.DefaultUserGroupId);
 
                 userEntity = await _userRepository.AddAsync(userEntity);
                 if (userEntity != null && userEntity.Id != Guid.Empty)
                 {
-                    response.StatusCode = (int) HttpStatusCode.Created;
+                    response.StatusCode = (int)HttpStatusCode.Created;
                     return response;
                 }
-
                 //TODO: Add Logging
                 _logger.LogWarning("");
             }
-
-            response.StatusCode = (int) HttpStatusCode.InternalServerError;
+            response.StatusCode = (int)HttpStatusCode.InternalServerError;
             return response;
         }
 
@@ -63,13 +65,13 @@ namespace Otiport.API.Services.Implementations
             if (userEntity == null)
             {
                 //TODO (peacecwz): Logging
-                response.StatusCode = (int) HttpStatusCode.NotFound;
+                response.StatusCode = (int)HttpStatusCode.NotFound;
                 return response;
             }
 
             response.AccessToken =
                 await _tokenProvider.GenerateTokenAsync(userEntity.Id, userEntity.EmailAddress, userEntity.UserGroupId);
-            response.StatusCode = (int) HttpStatusCode.OK;
+            response.StatusCode = (int)HttpStatusCode.OK;
             return response;
         }
     }
