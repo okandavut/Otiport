@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using Otiport.API.Contract.Request.Common;
 using Otiport.API.Data;
 using Otiport.API.Data.Entities.AddressInformations;
 
@@ -41,7 +42,12 @@ namespace Otiport.API.Repositories.Implementations
 
         public async Task<IEnumerable<CountryEntity>> GetCountries()
         {
-             return _dbContext.Countries.ToList();
+            return await _dbContext.Countries.ToListAsync();
+        }
+
+        public async Task<IEnumerable<CityEntity>> GetCities(GetCitiesRequest request)
+        {
+            return await _dbContext.Cities.Where(x => x.CountryItem.Id == Guid.Parse(request.CountryId)).ToListAsync();
         }
     }
 }
