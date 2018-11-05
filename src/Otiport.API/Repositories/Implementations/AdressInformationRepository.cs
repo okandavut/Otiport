@@ -49,5 +49,9 @@ namespace Otiport.API.Repositories.Implementations
         {
             return await _dbContext.Cities.Where(x => x.CountryItem.Id == Guid.Parse(request.CountryId)).ToListAsync();
         }
+        public async Task<IEnumerable<DistrictEntity>> GetDistricts(GetDistrictsRequest request)
+        {
+            return await _dbContext.Districts.Where(x => x.CityItem.Id== Guid.Parse(request.CityId)).ToListAsync();
+        }
     }
 }

@@ -11,5 +11,6 @@ namespace Otiport.API.Repositories
     {
         Task<IEnumerable<CountryEntity>> GetCountries();
         Task<IEnumerable<CityEntity>> GetCities(GetCitiesRequest request);
+        Task<IEnumerable<DistrictEntity>> GetDistricts(GetDistrictsRequest request);
     }
 }
