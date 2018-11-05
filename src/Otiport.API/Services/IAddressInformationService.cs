@@ -7,5 +7,6 @@ namespace Otiport.API.Services
     public interface IAddressInformationService
     {
         Task<GetCountriesResponse> GetCountriesAsync();
+        Task<GetCitiesResponse> GetCitiesAsync(GetCitiesRequest request);
     }
 }

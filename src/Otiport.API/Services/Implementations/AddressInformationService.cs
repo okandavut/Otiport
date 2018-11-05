@@ -37,5 +37,12 @@ namespace Otiport.API.Services.Implementations
             response.ListOfCountries = await _adressInformationRepository.GetCountries();
             return response;
         }
+
+        public async Task<GetCitiesResponse> GetCitiesAsync(GetCitiesRequest request)
+        {
+            var response = new GetCitiesResponse();
+            response.ListOfCities = await _adressInformationRepository.GetCities(request);
+            return response;
+        }
     }
 }
