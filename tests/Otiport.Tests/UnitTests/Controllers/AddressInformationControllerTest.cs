@@ -29,16 +29,31 @@ namespace Otiport.Tests.UnitTests.Controllers
         public async Task GetCountries_Should_Return_Value()
         {
             //Arrange
-            var getCountriesRequest = FixtureRepository.Create<GetCountriesRequest>();
             var getCountriesResponse = FixtureRepository.Create<GetCountriesResponse>();
-            addressServiceMock.Setup(x => x.GetCountriesAsync(getCountriesRequest)).Returns(Task.FromResult<GetCountriesResponse>(getCountriesResponse));
+            addressServiceMock.Setup(x => x.GetCountriesAsync()).Returns(Task.FromResult<GetCountriesResponse>(getCountriesResponse));
             //Act
-            var result = await addressInformationController.GetCountries(getCountriesRequest);
+            var result = await addressInformationController.GetCountries();
             //Assert
             result.Should().NotBeNull();
-            result.Should().BeOfType<GetCountriesResponse>();
-            var response = (GetCountriesResponse)result;
-            response.Should().NotBe(null);
+            result.Should().BeOfType<ObjectResult>();
+            var response = (ObjectResult)result;
+            response.StatusCode.Should().Be((int)HttpStatusCode.OK);
+        }
+
+        [Fact]
+        public async Task GetCities_Should_Return_Value()
+        {
+            //Arrange
+            var getCitiesResponse = FixtureRepository.Create<GetCitiesResponse>();
+            var getCitiesRequest = FixtureRepository.Create<GetCitiesRequest>();
+            addressServiceMock.Setup(x => x.GetCitiesAsync(getCitiesRequest)).Returns(Task.FromResult<GetCitiesResponse>(getCitiesResponse));
+            //Act
+            var result = await addressInformationController.GetCities(getCitiesRequest);
+            //Assert
+            result.Should().NotBeNull();
+            result.Should().BeOfType<ObjectResult>();
+            var response = (ObjectResult)result;
+            response.StatusCode.Should().Be((int)HttpStatusCode.OK);
         }
     }
 }
