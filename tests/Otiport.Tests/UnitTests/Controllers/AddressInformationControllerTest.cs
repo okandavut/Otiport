@@ -55,5 +55,22 @@ namespace Otiport.Tests.UnitTests.Controllers
             var response = (ObjectResult)result;
             response.StatusCode.Should().Be((int)HttpStatusCode.OK);
         }
+
+
+        [Fact]
+        public async Task GetDisctricts_Should_Return_Value()
+        {
+            //Arrange
+            var getDistrictsRequest = FixtureRepository.Create<GetDistrictsRequest>();
+            var getDistrictsResponse = FixtureRepository.Create<GetDistrictsResponse>();
+            addressServiceMock.Setup(x => x.GetDistrictsAsync(getDistrictsRequest)).Returns(Task.FromResult<GetDistrictsResponse>(getDistrictsResponse));
+            //Act
+            var result = await addressInformationController.GetDistricts(getDistrictsRequest);
+            //Assert
+            result.Should().NotBeNull();
+            result.Should().BeOfType<ObjectResult>();
+            var response = (ObjectResult)result;
+            response.StatusCode.Should().Be((int)HttpStatusCode.OK);
+        }
     }
 }
