@@ -31,5 +31,16 @@ namespace Otiport.API.Controllers
             }
             return StatusCode((int)HttpStatusCode.OK, response);
         }
+
+        [HttpPost, Route("cities")]
+        public async Task<IActionResult> GetCities(GetCitiesRequest request)
+        {
+            var response = await _addressInformationService.GetCitiesAsync(request);
+            if (response == null)
+            {
+                return BadRequest();
+            }
+            return StatusCode((int)HttpStatusCode.OK, response);
+        }
     }
 }
