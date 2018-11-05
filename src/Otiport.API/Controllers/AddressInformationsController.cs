@@ -12,7 +12,7 @@ using Otiport.API.Services;
 
 namespace Otiport.API.Controllers
 {
-    [Route("address")]
+    [Route("address-informations")]
     public class AddressInformationsController : ApiControllerBase
     {
         private readonly IAddressInformationService _addressInformationService;
@@ -21,15 +21,15 @@ namespace Otiport.API.Controllers
         {
             _addressInformationService = addressInformationService;
         }
-        [HttpPost, Route("getcountries")]
-        public async Task<GetCountriesResponse> GetCountries([FromBody] GetCountriesRequest request)
+        [HttpGet, Route("countries")]
+        public async Task<IActionResult> GetCountries()
         {
-            var response = await _addressInformationService.GetCountriesAsync(request);
+            var response = await _addressInformationService.GetCountriesAsync();
             if (response == null)
             {
-                return null;
+                return BadRequest();
             }
-            return response;
+            return StatusCode((int)HttpStatusCode.OK, response);
         }
     }
 }

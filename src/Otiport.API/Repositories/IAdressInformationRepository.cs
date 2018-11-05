@@ -8,6 +8,7 @@ namespace Otiport.API.Repositories
 {
     public interface IAdressInformationRepository : IRepository
     {
-        List<CountryEntity> GetCountries();
+        Task<IEnumerable<CountryEntity>> GetCountries();
     }
 }
+    

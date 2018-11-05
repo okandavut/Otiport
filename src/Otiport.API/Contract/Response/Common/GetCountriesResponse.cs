@@ -6,8 +6,8 @@ using Otiport.API.Data.Entities.AddressInformations;
 
 namespace Otiport.API.Contract.Response.Common
 {
-    public class GetCountriesResponse
+    public class GetCountriesResponse : ResponseBase
     {
-        public List<CountryEntity> ListOfCountries = new List<CountryEntity>();
+        public IEnumerable<CountryEntity> ListOfCountries;
     }
 }

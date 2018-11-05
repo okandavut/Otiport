@@ -39,9 +39,9 @@ namespace Otiport.API.Repositories.Implementations
             }
         }
 
-        public List<CountryEntity> GetCountries()
+        public async Task<IEnumerable<CountryEntity>> GetCountries()
         {
-            return _dbContext.Countries.ToList();
+             return _dbContext.Countries.ToList();
         }
     }
 }

@@ -6,6 +6,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using Otiport.API.Contract.Request.Common;
 using Otiport.API.Contract.Response.Common;
+using Otiport.API.Data.Entities.AddressInformations;
 using Otiport.API.Mappers;
 using Otiport.API.Providers;
 using Otiport.API.Repositories;
@@ -30,10 +31,10 @@ namespace Otiport.API.Services.Implementations
             _tokenProvider = tokenProvider;
             _configuration = configuration;
         }
-        public async Task<GetCountriesResponse> GetCountriesAsync(GetCountriesRequest request)
+        public async Task<GetCountriesResponse> GetCountriesAsync()
         {
             var response = new GetCountriesResponse();
-            response.ListOfCountries = _adressInformationRepository.GetCountries();
+            response.ListOfCountries = await _adressInformationRepository.GetCountries();
             return response;
         }
     }
