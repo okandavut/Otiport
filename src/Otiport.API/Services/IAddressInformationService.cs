@@ -8,5 +8,6 @@ namespace Otiport.API.Services
     {
         Task<GetCountriesResponse> GetCountriesAsync();
         Task<GetCitiesResponse> GetCitiesAsync(GetCitiesRequest request);
+        Task<GetDistrictsResponse> GetDistrictsAsync(GetDistrictsRequest request);
     }
 }

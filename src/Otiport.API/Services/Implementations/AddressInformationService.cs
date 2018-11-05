@@ -44,5 +44,11 @@ namespace Otiport.API.Services.Implementations
             response.ListOfCities = await _adressInformationRepository.GetCities(request);
             return response;
         }
+        public async Task<GetDistrictsResponse> GetDistrictsAsync(GetDistrictsRequest request)
+        {
+            var response = new GetDistrictsResponse();
+            response.ListOfDistricts = await _adressInformationRepository.GetDistricts(request);
+            return response;
+        }
     }
 }
