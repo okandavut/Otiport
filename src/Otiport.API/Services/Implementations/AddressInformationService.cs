@@ -34,20 +34,20 @@ namespace Otiport.API.Services.Implementations
         public async Task<GetCountriesResponse> GetCountriesAsync()
         {
             var response = new GetCountriesResponse();
-            response.ListOfCountries = await _adressInformationRepository.GetCountries();
+            response.ListOfCountries = await _adressInformationRepository.GetCountriesAsync();
             return response;
         }
 
         public async Task<GetCitiesResponse> GetCitiesAsync(GetCitiesRequest request)
         {
             var response = new GetCitiesResponse();
-            response.ListOfCities = await _adressInformationRepository.GetCities(request);
+            response.ListOfCities = await _adressInformationRepository.GetCitiesAsync(request.CountryId);
             return response;
         }
         public async Task<GetDistrictsResponse> GetDistrictsAsync(GetDistrictsRequest request)
         {
             var response = new GetDistrictsResponse();
-            response.ListOfDistricts = await _adressInformationRepository.GetDistricts(request);
+            response.Districts = await _adressInformationRepository.GetDistrictsAsync(request.CityId);
             return response;
         }
     }

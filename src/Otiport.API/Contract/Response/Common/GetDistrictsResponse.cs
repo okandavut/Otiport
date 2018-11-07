@@ -8,6 +8,6 @@ namespace Otiport.API.Contract.Response.Common
 {
     public class GetDistrictsResponse : ResponseBase
     {
-        public IEnumerable<DistrictEntity> ListOfDistricts;
+        public IEnumerable<DistrictEntity> Districts;
     }
 }

@@ -9,8 +9,8 @@ namespace Otiport.API.Repositories
 {
     public interface IAdressInformationRepository : IRepository
     {
-        Task<IEnumerable<CountryEntity>> GetCountries();
-        Task<IEnumerable<CityEntity>> GetCities(GetCitiesRequest request);
-        Task<IEnumerable<DistrictEntity>> GetDistricts(GetDistrictsRequest request);
+        Task<IEnumerable<CountryEntity>> GetCountriesAsync();
+        Task<IEnumerable<CityEntity>> GetCitiesAsync(string CountryId);
+        Task<IEnumerable<DistrictEntity>> GetDistrictsAsync(string CityId);
     }
 }

@@ -46,6 +46,7 @@ namespace Otiport.API.Controllers
         public async Task<IActionResult> GetDistricts(GetDistrictsRequest request)
         {
             var response = await _addressInformationService.GetDistrictsAsync(request);
+            
             if (response == null)
             {
                 return BadRequest();
