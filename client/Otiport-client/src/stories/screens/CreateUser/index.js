@@ -1,8 +1,10 @@
 import * as React from "react";
 import SimpleReactValidator from "simple-react-validator";
+
 export interface Props {
   isLoading: boolean;
   createUser: Function;
+  getCountries: Function;
 }
 export interface State {}
 
@@ -20,7 +22,8 @@ export default class CreateUser extends React.Component<Props, State> {
       firstName: "",
       birthDate: "",
       password: "",
-      middleName: ""
+      middleName: "",
+      listOfCountries: this.props.getCountries()
     };
   }
   handleChange = event => {
@@ -28,7 +31,11 @@ export default class CreateUser extends React.Component<Props, State> {
       [event.target.id]: event.target.value
     });
   };
-  sendLogin = () => {
+  getCountries = () => {
+    //BU KISIMDA DATA CONSOLEDAN SONRA GELDIGI ICIN SORUN VAR.
+    console.log(this.props.getCountries());
+  };
+  createUser = () => {
     if (this.validator.allValid()) {
       console.log(this.state);
       this.props.createUser(
@@ -222,8 +229,12 @@ export default class CreateUser extends React.Component<Props, State> {
                 value={this.state.country}
                 onChange={this.handleChange}
               >
-                <option>Ülke Seçiniz</option>
-                <option>Türkiye</option>
+                {this.state.listOfCountries.map(res => (
+                  <option key={res.key} value={res.key}>
+                    {res}
+                  </option>
+                ))}
+                ;
               </select>
               {this.validator.message(
                 "Ülke",
@@ -286,7 +297,7 @@ export default class CreateUser extends React.Component<Props, State> {
         <br />
         <div className="field is-grouped">
           <div className="control">
-            <button className="button is-link" onClick={this.sendLogin}>
+            <button className="button is-link" onClick={this.createUser}>
               Onayla
             </button>
           </div>

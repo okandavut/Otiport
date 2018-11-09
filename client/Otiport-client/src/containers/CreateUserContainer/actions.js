@@ -47,3 +47,15 @@ export function createUser(
     dispatch(changeIsLoading(false));
   };
 }
+
+export function getCountries(countryId) {
+  return dispatch => {
+    dispatch(changeIsLoading(true));
+    APIService.getCountries().then(res => {
+      if (!res.isSuccess) {
+        console.log("aa");
+      }
+    });
+    dispatch(changeIsLoading(false));
+  };
+}

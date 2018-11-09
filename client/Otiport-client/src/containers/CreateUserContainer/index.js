@@ -1,9 +1,10 @@
 import * as React from "react";
 import { connect } from "react-redux";
 import CreateUser from "../../stories/screens/CreateUser";
-import { createUser } from "./actions";
+import { createUser, getCountries } from "./actions";
 export interface Props {
   createUser: Function;
+  getCountries: Function;
   isLoading: boolean;
 }
 export interface State {}
@@ -34,10 +35,17 @@ class createUserContainer extends React.Component<Props, State> {
       district
     );
   }
+  getCountries = () => {
+    this.props.getCountries();
+  };
 
   render() {
     return (
-      <CreateUser createUser={this.createUser.bind(this)} isLoading={false} />
+      <CreateUser
+        createUser={this.createUser.bind(this)}
+        getCountries={this.getCountries.bind(this)}
+        isLoading={false}
+      />
     );
   }
 }
@@ -69,7 +77,8 @@ function bindAction(dispatch) {
           city,
           district
         )
-      )
+      ),
+    getCountries: () => dispatch(getCountries())
   };
 }
 
