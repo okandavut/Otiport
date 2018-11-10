@@ -4,7 +4,7 @@ import SimpleReactValidator from "simple-react-validator";
 export interface Props {
   isLoading: boolean;
   createUser: Function;
-  getCountries: Function;
+  countries: Array<Object>;
 }
 export interface State {}
 
@@ -22,8 +22,7 @@ export default class CreateUser extends React.Component<Props, State> {
       firstName: "",
       birthDate: "",
       password: "",
-      middleName: "",
-      listOfCountries: this.props.getCountries()
+      middleName: ""
     };
   }
   handleChange = event => {
@@ -31,10 +30,7 @@ export default class CreateUser extends React.Component<Props, State> {
       [event.target.id]: event.target.value
     });
   };
-  getCountries = () => {
-    //BU KISIMDA DATA CONSOLEDAN SONRA GELDIGI ICIN SORUN VAR.
-    console.log(this.props.getCountries());
-  };
+
   createUser = () => {
     if (this.validator.allValid()) {
       console.log(this.state);
@@ -229,9 +225,9 @@ export default class CreateUser extends React.Component<Props, State> {
                 value={this.state.country}
                 onChange={this.handleChange}
               >
-                {this.state.listOfCountries.map(res => (
+                {this.props.countries.map(res => (
                   <option key={res.key} value={res.key}>
-                    {res}
+                    {res.name}
                   </option>
                 ))}
                 ;
