@@ -21,6 +21,7 @@ namespace Otiport.API.Controllers
         {
             _addressInformationService = addressInformationService;
         }
+        
         [HttpGet, Route("countries")]
         public async Task<IActionResult> GetCountries()
         {
@@ -32,7 +33,7 @@ namespace Otiport.API.Controllers
             return StatusCode((int)HttpStatusCode.OK, response);
         }
 
-        [HttpPost, Route("cities")]
+        [HttpGet, Route("cities")]
         public async Task<IActionResult> GetCities(GetCitiesRequest request)
         {
             var response = await _addressInformationService.GetCitiesAsync(request);
@@ -42,7 +43,8 @@ namespace Otiport.API.Controllers
             }
             return StatusCode((int)HttpStatusCode.OK, response);
         }
-        [HttpPost, Route("districts")]
+        
+        [HttpGet, Route("districts")]
         public async Task<IActionResult> GetDistricts(GetDistrictsRequest request)
         {
             var response = await _addressInformationService.GetDistrictsAsync(request);
