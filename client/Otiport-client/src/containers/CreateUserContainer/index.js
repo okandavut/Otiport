@@ -1,14 +1,20 @@
 import * as React from "react";
 import { connect } from "react-redux";
 import CreateUser from "../../stories/screens/CreateUser";
-import { createUser } from "./actions";
+import { createUser, getCountries } from "./actions";
 export interface Props {
   createUser: Function;
+  getCountries: Function;
   isLoading: boolean;
+  countries: Array<Object>;
 }
 export interface State {}
 
 class createUserContainer extends React.Component<Props, State> {
+  componentWillMount() {
+    this.props.getCountries();
+  }
+
   createUser(
     userName,
     password,
@@ -37,7 +43,11 @@ class createUserContainer extends React.Component<Props, State> {
 
   render() {
     return (
-      <CreateUser createUser={this.createUser.bind(this)} isLoading={false} />
+      <CreateUser
+        createUser={this.createUser.bind(this)}
+        countries={this.props.countries}
+        isLoading={false}
+      />
     );
   }
 }
@@ -69,12 +79,14 @@ function bindAction(dispatch) {
           city,
           district
         )
-      )
+      ),
+    getCountries: () => dispatch(getCountries())
   };
 }
 
 const mapStateToProps = state => ({
-  isLoading: state.createUserPageReducer.isLoading
+  isLoading: state.createUserPageReducer.isLoading,
+  countries: state.createUserPageReducer.countries
 });
 
 export default connect(

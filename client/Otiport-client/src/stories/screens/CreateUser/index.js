@@ -1,8 +1,10 @@
 import * as React from "react";
 import SimpleReactValidator from "simple-react-validator";
+
 export interface Props {
   isLoading: boolean;
   createUser: Function;
+  countries: Array<Object>;
 }
 export interface State {}
 
@@ -28,7 +30,8 @@ export default class CreateUser extends React.Component<Props, State> {
       [event.target.id]: event.target.value
     });
   };
-  sendLogin = () => {
+
+  createUser = () => {
     if (this.validator.allValid()) {
       console.log(this.state);
       this.props.createUser(
@@ -222,8 +225,12 @@ export default class CreateUser extends React.Component<Props, State> {
                 value={this.state.country}
                 onChange={this.handleChange}
               >
-                <option>Ülke Seçiniz</option>
-                <option>Türkiye</option>
+                {this.props.countries.map(res => (
+                  <option key={res.key} value={res.key}>
+                    {res.name}
+                  </option>
+                ))}
+                ;
               </select>
               {this.validator.message(
                 "Ülke",
@@ -286,7 +293,7 @@ export default class CreateUser extends React.Component<Props, State> {
         <br />
         <div className="field is-grouped">
           <div className="control">
-            <button className="button is-link" onClick={this.sendLogin}>
+            <button className="button is-link" onClick={this.createUser}>
               Onayla
             </button>
           </div>

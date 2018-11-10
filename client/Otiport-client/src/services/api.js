@@ -4,6 +4,7 @@ import LoginRequest from "../models/request/users/loginRequest";
 import LoginResponse from "../models/response/users/loginResponse";
 import CreateUserRequest from "../models/request/users/createUserRequest";
 import CreateUserResponse from "../models/response/users/createUserResponse";
+import GetCountriesResponse from "../models/response/common/getCountriesResponse";
 class APIService {
   client = null;
   constructor() {
@@ -25,6 +26,11 @@ class APIService {
     return this.client
       .post(endpoints.createUser, model)
       .then(res => new CreateUserResponse(res.data));
+  }
+  getCountries() {
+    return this.client
+      .get(endpoints.getCountries)
+      .then(res => new GetCountriesResponse(res.data));
   }
 }
 
