@@ -3,7 +3,7 @@ const intializedState = {
   isLoading: false,
   hasError: false,
   errors: [],
-  username: ""
+  countries: []
 };
 
 export default function(state: any = intializedState, action: Function) {
@@ -11,7 +11,14 @@ export default function(state: any = intializedState, action: Function) {
     case types.IS_LOADING:
       return {
         ...state,
-        isLoading: action.payload
+        isLoading: action.isLoading
       };
+    case types.SET_COUNTRIES:
+      return {
+        ...state,
+        countries: action.countries
+      };
+    default:
+      return state;
   }
 }

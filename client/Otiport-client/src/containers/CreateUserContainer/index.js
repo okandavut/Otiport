@@ -6,10 +6,15 @@ export interface Props {
   createUser: Function;
   getCountries: Function;
   isLoading: boolean;
+  countries: Array<Object>;
 }
 export interface State {}
 
 class createUserContainer extends React.Component<Props, State> {
+  componentWillMount() {
+    this.props.getCountries();
+  }
+
   createUser(
     userName,
     password,
@@ -35,15 +40,12 @@ class createUserContainer extends React.Component<Props, State> {
       district
     );
   }
-  getCountries = () => {
-    this.props.getCountries();
-  };
 
   render() {
     return (
       <CreateUser
         createUser={this.createUser.bind(this)}
-        getCountries={this.getCountries.bind(this)}
+        countries={this.props.countries}
         isLoading={false}
       />
     );
@@ -83,7 +85,8 @@ function bindAction(dispatch) {
 }
 
 const mapStateToProps = state => ({
-  isLoading: state.createUserPageReducer.isLoading
+  isLoading: state.createUserPageReducer.isLoading,
+  countries: state.createUserPageReducer.countries
 });
 
 export default connect(

@@ -6,7 +6,14 @@ import UserModel from "../../models/request/users/userModel";
 export function changeIsLoading(isLoading: boolean) {
   return {
     type: types.IS_LOADING,
-    value: isLoading
+    isLoading: isLoading
+  };
+}
+
+export function setCountries(countries: Array<Object>) {
+  return {
+    type: types.SET_COUNTRIES,
+    countries: countries
   };
 }
 
@@ -55,7 +62,9 @@ export function getCountries(countryId) {
       if (!res.isSuccess) {
         console.log("aa");
       }
+      console.log(res.listOfCountries);
+      dispatch(setCountries(res.listOfCountries));
+      dispatch(changeIsLoading(false));
     });
-    dispatch(changeIsLoading(false));
   };
 }
