@@ -5,6 +5,8 @@ import LoginResponse from "../models/response/users/loginResponse";
 import CreateUserRequest from "../models/request/users/createUserRequest";
 import CreateUserResponse from "../models/response/users/createUserResponse";
 import GetCountriesResponse from "../models/response/common/getCountriesResponse";
+import GetCitiesResponse from "../models/response/common/getCitiesResponse";
+import GetDistrictsResponse from "../models/response/common/getDistrictsResponse";
 class APIService {
   client = null;
   constructor() {
@@ -31,6 +33,16 @@ class APIService {
     return this.client
       .get(endpoints.getCountries)
       .then(res => new GetCountriesResponse(res.data));
+  }
+  getCities(countryId: string) {
+    return this.client
+      .get(endpoints.getCities + "?CountryId=" + countryId)
+      .then(res => new GetCitiesResponse(res.data));
+  }
+  getDistricts(cityId: string) {
+    return this.client
+      .get(endpoints.getDistricts + "?CityId=" + cityId)
+      .then(res => new GetDistrictsResponse(res.data));
   }
 }
 
