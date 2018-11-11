@@ -5,6 +5,10 @@ export interface Props {
   isLoading: boolean;
   createUser: Function;
   countries: Array<Object>;
+  getCities: Function;
+  getDistricts: Function;
+  cities: Array<Object>;
+  districts: Array<Object>;
 }
 export interface State {}
 
@@ -29,8 +33,15 @@ export default class CreateUser extends React.Component<Props, State> {
     this.setState({
       [event.target.id]: event.target.value
     });
+    if (event.target.id == "country") this.getCities(event.target.value);
+    if (event.target.id == "city") this.getDistricts(event.target.value);
   };
-
+  getCities = countryId => {
+    this.props.getCities(countryId);
+  };
+  getDistricts = cityId => {
+    this.props.getDistricts(cityId);
+  };
   createUser = () => {
     if (this.validator.allValid()) {
       console.log(this.state);
@@ -48,7 +59,6 @@ export default class CreateUser extends React.Component<Props, State> {
       );
     } else {
       this.validator.showMessages();
-      // rerender to show messages for the first time
       this.forceUpdate();
     }
   };
@@ -225,8 +235,9 @@ export default class CreateUser extends React.Component<Props, State> {
                 value={this.state.country}
                 onChange={this.handleChange}
               >
+                <option value={"0"}>Lütfen Ülke Seçiniz</option>
                 {this.props.countries.map(res => (
-                  <option key={res.key} value={res.key}>
+                  <option key={res.id} value={res.id}>
                     {res.name}
                   </option>
                 ))}
@@ -252,9 +263,13 @@ export default class CreateUser extends React.Component<Props, State> {
                 value={this.state.city}
                 onChange={this.handleChange}
               >
-                <option>Şehir Seçiniz</option>
-                <option>İzmir</option>
-                <option>İstanbul</option>
+                <option value={"0"}>Lütfen Şehir Seçiniz</option>
+                {this.props.cities.map(res => (
+                  <option key={res.id} value={res.id}>
+                    {res.name}
+                  </option>
+                ))}
+                ;
               </select>
               {this.validator.message(
                 "Şehir",
@@ -276,9 +291,13 @@ export default class CreateUser extends React.Component<Props, State> {
                 value={this.state.district}
                 onChange={this.handleChange}
               >
-                <option>İlçe Seçiniz</option>
-                <option>Karşıyaka</option>
-                <option>Konak</option>
+                <option value={"0"}>Lütfen İlçe Seçiniz</option>
+                {this.props.districts.map(res => (
+                  <option key={res.id} value={res.id}>
+                    {res.name}
+                  </option>
+                ))}
+                ;
               </select>
               {this.validator.message(
                 "İlçe",
