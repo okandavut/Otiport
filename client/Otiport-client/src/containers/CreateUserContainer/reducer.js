@@ -18,12 +18,15 @@ export default function(state: any = intializedState, action: Function) {
     case types.SET_COUNTRIES:
       return {
         ...state,
-        countries: action.countries
+        countries: action.countries,
+        cities: [],
+        districts: []
       };
     case types.SET_CITIES:
       return {
         ...state,
-        cities: action.cities
+        cities: action.cities,
+        districts: []
       };
     case types.SET_DISTRICTS:
       return {
