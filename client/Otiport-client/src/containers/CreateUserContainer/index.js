@@ -44,9 +44,11 @@ class createUserContainer extends React.Component<Props, State> {
       district
     );
   }
+  
   getCities(countryId) {
     this.props.getCities(countryId);
   }
+
   getDistricts(cityId) {
     this.props.getDistricts(cityId);
   }

@@ -13,6 +13,7 @@ namespace Otiport.API
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
                 .UseKestrel()
+                .UseUrls("http://*:5001/")
                 .UseStartup<Startup>();
     }
 }

@@ -235,7 +235,7 @@ export default class CreateUser extends React.Component<Props, State> {
                 value={this.state.country}
                 onChange={this.handleChange}
               >
-                <option value={"0"}>Lütfen Ülke Seçiniz</option>
+                <option selected={true}>Lütfen Ülke Seçiniz</option>
                 {this.props.countries.map(res => (
                   <option key={res.id} value={res.id}>
                     {res.name}
@@ -263,8 +263,8 @@ export default class CreateUser extends React.Component<Props, State> {
                 value={this.state.city}
                 onChange={this.handleChange}
               >
-                <option value={"0"}>Lütfen Şehir Seçiniz</option>
-                {this.props.cities.map(res => (
+                <option selected={true}>Lütfen Şehir Seçiniz</option>
+                {this.props.cities !== undefined &&this.props.cities.map(res => (
                   <option key={res.id} value={res.id}>
                     {res.name}
                   </option>
@@ -291,8 +291,8 @@ export default class CreateUser extends React.Component<Props, State> {
                 value={this.state.district}
                 onChange={this.handleChange}
               >
-                <option value={"0"}>Lütfen İlçe Seçiniz</option>
-                {this.props.districts.map(res => (
+                <option selected={true}>Lütfen İlçe Seçiniz</option>
+                {this.props.districts !== undefined && this.props.districts.map(res => (
                   <option key={res.id} value={res.id}>
                     {res.name}
                   </option>
