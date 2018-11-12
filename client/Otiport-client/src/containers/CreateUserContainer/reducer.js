@@ -3,7 +3,9 @@ const intializedState = {
   isLoading: false,
   hasError: false,
   errors: [],
-  countries: []
+  countries: [],
+  cities: [],
+  districts: []
 };
 
 export default function(state: any = intializedState, action: Function) {
@@ -17,6 +19,16 @@ export default function(state: any = intializedState, action: Function) {
       return {
         ...state,
         countries: action.countries
+      };
+    case types.SET_CITIES:
+      return {
+        ...state,
+        cities: action.cities
+      };
+    case types.SET_DISTRICTS:
+      return {
+        ...state,
+        districts: action.districts
       };
     default:
       return state;

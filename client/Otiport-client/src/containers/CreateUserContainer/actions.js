@@ -17,6 +17,20 @@ export function setCountries(countries: Array<Object>) {
   };
 }
 
+export function setCities(cities: Array<Object>) {
+  return {
+    type: types.SET_CITIES,
+    cities: cities
+  };
+}
+
+export function setDistricts(districts: Array<Object>) {
+  return {
+    type: types.SET_DISTRICTS,
+    districts: districts
+  };
+}
+
 export function createUser(
   userName,
   password,
@@ -55,15 +69,40 @@ export function createUser(
   };
 }
 
-export function getCountries(countryId) {
+export function getCountries() {
   return dispatch => {
     dispatch(changeIsLoading(true));
     APIService.getCountries().then(res => {
       if (!res.isSuccess) {
         console.log("aa");
       }
-      console.log(res.listOfCountries);
       dispatch(setCountries(res.listOfCountries));
+      dispatch(changeIsLoading(false));
+    });
+  };
+}
+
+export function getCities(countryId) {
+  return dispatch => {
+    dispatch(changeIsLoading(true));
+    APIService.getCities(countryId).then(res => {
+      if (!res.isSuccess) {
+        console.log("hata");
+      }
+      dispatch(setCities(res.listOfCities));
+      dispatch(changeIsLoading(false));
+    });
+  };
+}
+
+export function getDistricts(cityId) {
+  return dispatch => {
+    dispatch(changeIsLoading(true));
+    APIService.getDistricts(cityId).then(res => {
+      if (!res.isSuccess) {
+        console.log("hata");
+      }
+      dispatch(setDistricts(res.districts));
       dispatch(changeIsLoading(false));
     });
   };
