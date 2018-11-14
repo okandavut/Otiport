@@ -7,12 +7,11 @@ using System.Threading.Tasks;
 namespace Otiport.API.Data.Entities.AddressInformations
 {
     [Table("Districts")]
-    public class DistrictEntity : BaseEntity<Guid>
+    public class DistrictEntity : BaseEntity<int>
     {
         public string Name { get; set; }
         public string Value { get; set; }
-        public int CityId { get; set; }
 
-        public virtual CityEntity CityItem { get; set; }
+        public virtual CityEntity City { get; set; }
     }
 }

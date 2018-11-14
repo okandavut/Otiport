@@ -47,11 +47,11 @@ namespace Otiport.API.Repositories.Implementations
 
         public async Task<IEnumerable<CityEntity>> GetCitiesAsync(string CountryId)
         {
-            return await _dbContext.Cities.Where(x => x.CountryItem.Id == Guid.Parse(CountryId)).ToListAsync();
+            return await _dbContext.Cities.Where(x => x.Country.Id == int.Parse(CountryId)).ToListAsync();
         }
         public async Task<IEnumerable<DistrictEntity>> GetDistrictsAsync (string CityId)
         {
-            return await _dbContext.Districts.Where(x => x.CityItem.Id== Guid.Parse(CityId)).ToListAsync();
+            return await _dbContext.Districts.Where(x => x.City.Id== int.Parse(CityId)).ToListAsync();
         }
     }
 }

@@ -10,8 +10,8 @@ using Otiport.API.Data;
 namespace Otiport.API.Migrations
 {
     [DbContext(typeof(OtiportDbContext))]
-    [Migration("20181011215748_treatment profile item")]
-    partial class treatmentprofileitem
+    [Migration("20181114221317_initial db")]
+    partial class initialdb
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -20,6 +20,95 @@ namespace Otiport.API.Migrations
                 .HasAnnotation("ProductVersion", "2.1.3-rtm-32065")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+            modelBuilder.Entity("Otiport.API.Data.Entities.AddressInformations.CityEntity", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int?>("CountryId");
+
+                    b.Property<string>("CreatedBy");
+
+                    b.Property<DateTime>("CreatedOn");
+
+                    b.Property<bool>("IsActive");
+
+                    b.Property<bool>("IsDeleted");
+
+                    b.Property<string>("Name");
+
+                    b.Property<string>("UpdatedBy");
+
+                    b.Property<DateTime?>("UpdatedOn");
+
+                    b.Property<string>("Value");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CountryId");
+
+                    b.ToTable("Cities");
+                });
+
+            modelBuilder.Entity("Otiport.API.Data.Entities.AddressInformations.CountryEntity", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("CreatedBy");
+
+                    b.Property<DateTime>("CreatedOn");
+
+                    b.Property<bool>("IsActive");
+
+                    b.Property<bool>("IsDeleted");
+
+                    b.Property<string>("Name");
+
+                    b.Property<string>("UpdatedBy");
+
+                    b.Property<DateTime?>("UpdatedOn");
+
+                    b.Property<string>("Value");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Countries");
+                });
+
+            modelBuilder.Entity("Otiport.API.Data.Entities.AddressInformations.DistrictEntity", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int?>("CityId");
+
+                    b.Property<string>("CreatedBy");
+
+                    b.Property<DateTime>("CreatedOn");
+
+                    b.Property<bool>("IsActive");
+
+                    b.Property<bool>("IsDeleted");
+
+                    b.Property<string>("Name");
+
+                    b.Property<string>("UpdatedBy");
+
+                    b.Property<DateTime?>("UpdatedOn");
+
+                    b.Property<string>("Value");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CityId");
+
+                    b.ToTable("Districts");
+                });
 
             modelBuilder.Entity("Otiport.API.Data.Entities.Patient.PatientEntity", b =>
                 {
@@ -202,15 +291,15 @@ namespace Otiport.API.Migrations
 
                     b.Property<DateTime>("BirthDate");
 
-                    b.Property<string>("City");
+                    b.Property<int?>("CityId");
 
-                    b.Property<string>("Country");
+                    b.Property<int?>("CountryId");
 
                     b.Property<string>("CreatedBy");
 
                     b.Property<DateTime>("CreatedOn");
 
-                    b.Property<string>("District");
+                    b.Property<int?>("DistrictId");
 
                     b.Property<string>("EmailAddress");
 
@@ -237,6 +326,12 @@ namespace Otiport.API.Migrations
                     b.Property<string>("Username");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("CityId");
+
+                    b.HasIndex("CountryId");
+
+                    b.HasIndex("DistrictId");
 
                     b.HasIndex("UserGroupId");
 
@@ -266,6 +361,20 @@ namespace Otiport.API.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("UserGroups");
+                });
+
+            modelBuilder.Entity("Otiport.API.Data.Entities.AddressInformations.CityEntity", b =>
+                {
+                    b.HasOne("Otiport.API.Data.Entities.AddressInformations.CountryEntity", "Country")
+                        .WithMany()
+                        .HasForeignKey("CountryId");
+                });
+
+            modelBuilder.Entity("Otiport.API.Data.Entities.AddressInformations.DistrictEntity", b =>
+                {
+                    b.HasOne("Otiport.API.Data.Entities.AddressInformations.CityEntity", "City")
+                        .WithMany()
+                        .HasForeignKey("CityId");
                 });
 
             modelBuilder.Entity("Otiport.API.Data.Entities.Patient.PatientEntity", b =>
@@ -300,6 +409,18 @@ namespace Otiport.API.Migrations
 
             modelBuilder.Entity("Otiport.API.Data.Entities.Users.UserEntity", b =>
                 {
+                    b.HasOne("Otiport.API.Data.Entities.AddressInformations.CityEntity", "City")
+                        .WithMany()
+                        .HasForeignKey("CityId");
+
+                    b.HasOne("Otiport.API.Data.Entities.AddressInformations.CountryEntity", "Country")
+                        .WithMany()
+                        .HasForeignKey("CountryId");
+
+                    b.HasOne("Otiport.API.Data.Entities.AddressInformations.DistrictEntity", "District")
+                        .WithMany()
+                        .HasForeignKey("DistrictId");
+
                     b.HasOne("Otiport.API.Data.Entities.Users.UserGroupEntity", "UserGroup")
                         .WithMany("Users")
                         .HasForeignKey("UserGroupId")
