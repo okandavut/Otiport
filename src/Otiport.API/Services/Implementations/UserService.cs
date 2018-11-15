@@ -33,7 +33,7 @@ namespace Otiport.API.Services.Implementations
         public async Task<CreateUserResponse> CreateUserAsync(CreateUserRequest request)
         {
             var response = new CreateUserResponse();
-            request.UserModel.Password = request.UserModel.Password.Hash(HashType.SHA256);
+            //request.UserModel.Password = request.UserModel.Password.Hash(HashType.SHA256);
             bool isExists =
                 await _userRepository.IsExistsUserAsync(request.UserModel.Username, request.UserModel.EmailAddress);
 
@@ -41,7 +41,7 @@ namespace Otiport.API.Services.Implementations
             {
                 //TODO: Create User
                 var userEntity = _userMapper.ToEntity(request.UserModel);
-                userEntity.UserGroupId = _configuration.GetValue<int>(Contants.DefaultUserGroupId);
+                userEntity.UserGroupId = 1;
 
                 userEntity = await _userRepository.AddAsync(userEntity);
                 if (userEntity != null && userEntity.Id != Guid.Empty)
@@ -60,7 +60,7 @@ namespace Otiport.API.Services.Implementations
         {
             var response = new LoginResponse();
 
-            request.Password = request.Password.Hash(HashType.SHA256);
+            //request.Password = request.Password.Hash(HashType.SHA256);
             var userEntity = await _userRepository.GetUserByCredentialsAsync(request.EmailAddress, request.Password);
             if (userEntity == null)
             {

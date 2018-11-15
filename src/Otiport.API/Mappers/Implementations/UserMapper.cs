@@ -20,7 +20,8 @@ namespace Otiport.API.Mappers.Implementations
                 Username = entity.Username,
                 BirthDate = entity.BirthDate,
                 EmailAddress = entity.EmailAddress,
-                ProfilePictureUrl = entity.ProfilePictureUrl
+                ProfilePictureUrl = entity.ProfilePictureUrl,
+                UserGroupId = entity.UserGroup.Id
             };
         }
 
@@ -47,7 +48,11 @@ namespace Otiport.API.Mappers.Implementations
                 Username = model.Username,
                 BirthDate = model.BirthDate,
                 EmailAddress = model.EmailAddress,
-                ProfilePictureUrl = model.ProfilePictureUrl
+                ProfilePictureUrl = model.ProfilePictureUrl,
+                UserGroup = new UserGroupEntity()
+                {
+                    Id = model.UserGroupId
+                }
             };
         }
     }

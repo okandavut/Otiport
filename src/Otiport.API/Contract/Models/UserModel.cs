@@ -1,5 +1,6 @@
 using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Otiport.API.Contract.Models
 {
@@ -14,7 +15,7 @@ namespace Otiport.API.Contract.Models
         [MinLength(8)]
         [Required]
         public string Password { get; set; }
-        
+
         [Required]
         [EmailAddress]
         public string EmailAddress { get; set; }
@@ -27,7 +28,7 @@ namespace Otiport.API.Contract.Models
         [MaxLength(25)]
         [MinLength(3)]
         public string MiddleName { get; set; }
-        
+
         [MaxLength(15)]
         [MinLength(2)]
         [Required]
@@ -36,13 +37,15 @@ namespace Otiport.API.Contract.Models
         [Required]
         public DateTime BirthDate { get; set; }
 
-        public int  CountryId { get; set; }
+        public int CountryId { get; set; }
 
-        public int  CityId { get; set; }
+        public int CityId { get; set; }
 
-        public  int DistrictId { get; set; }
+        public int DistrictId { get; set; }
 
         public string ProfilePictureUrl { get; set; }
+
+        public int UserGroupId { get; set; }
 
     }
 }

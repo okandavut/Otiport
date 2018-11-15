@@ -27,7 +27,7 @@ namespace Otiport.API.Repositories.Implementations
         {
             try
             {
-                await _dbContext.SaveChangesAsync();
+                await _dbContext.SaveChangesAsync(true);
                 return true;
             }
             catch (Exception e)
@@ -44,8 +44,13 @@ namespace Otiport.API.Repositories.Implementations
 
         public async Task<UserEntity> AddAsync(UserEntity entity)
         {
+            entity.City = _dbContext.Cities.Find(entity.City.Id);
+            entity.Country = _dbContext.Countries.Find(entity.Country.Id);
+            entity.District = _dbContext.Districts.Find(entity.District.Id);
+            entity.UserGroup = _dbContext.UserGroups.Find(entity.UserGroup.Id);
             await _dbContext.Users.AddAsync(entity);
             bool isSuccess = await SaveAsync();
+
 
             return isSuccess ? entity : null;
         }
