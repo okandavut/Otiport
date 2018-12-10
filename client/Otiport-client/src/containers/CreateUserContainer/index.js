@@ -2,6 +2,8 @@ import * as React from "react";
 import { connect } from "react-redux";
 import CreateUser from "../../stories/screens/CreateUser";
 import { createUser, getCountries, getCities, getDistricts } from "./actions";
+import { Redirect } from "react-router";
+
 export interface Props {
   createUser: Function;
   getCountries: Function;
@@ -11,6 +13,7 @@ export interface Props {
   countries: Array<Object>;
   cities: Array<Object>;
   districts: Array<Object>;
+  redirect: false;
 }
 export interface State {}
 
@@ -44,7 +47,7 @@ class createUserContainer extends React.Component<Props, State> {
       district
     );
   }
-  
+
   getCities(countryId) {
     this.props.getCities(countryId);
   }
@@ -55,15 +58,18 @@ class createUserContainer extends React.Component<Props, State> {
 
   render() {
     return (
-      <CreateUser
-        createUser={this.createUser.bind(this)}
-        countries={this.props.countries}
-        getCities={this.getCities.bind(this)}
-        cities={this.props.cities}
-        getDistricts={this.props.getDistricts.bind(this)}
-        districts={this.props.districts}
-        isLoading={false}
-      />
+      <div>
+        <CreateUser
+          createUser={this.createUser.bind(this)}
+          countries={this.props.countries}
+          getCities={this.getCities.bind(this)}
+          cities={this.props.cities}
+          getDistricts={this.props.getDistricts.bind(this)}
+          districts={this.props.districts}
+          isLoading={false}
+        />
+        {this.props.redirect && <Redirect to={"/Login"} />}
+      </div>
     );
   }
 }
@@ -106,7 +112,8 @@ const mapStateToProps = state => ({
   isLoading: state.createUserPageReducer.isLoading,
   countries: state.createUserPageReducer.countries,
   cities: state.createUserPageReducer.cities,
-  districts: state.createUserPageReducer.districts
+  districts: state.createUserPageReducer.districts,
+  redirect: state.createUserPageReducer.redirect
 });
 
 export default connect(

@@ -6,13 +6,3 @@ export function changeIsLoading(isLoading: boolean) {
     value: isLoading
   };
 }
-
-export function fetchUser(username, password) {
-  return dispatch => {
-    dispatch(changeIsLoading(true));
-
-    //Call Api
-
-    dispatch(changeIsLoading(false));
-  };
-}

@@ -3,7 +3,8 @@ const initialState = {
   isLoading: false,
   hasError: false,
   errors: [],
-  accessToken: ""
+  accessToken: "",
+  redirect: false
 };
 
 export default function(state: any = initialState, action: Function) {
@@ -11,18 +12,23 @@ export default function(state: any = initialState, action: Function) {
     case types.IS_LOADING:
       return {
         ...state,
-        isLoading: action.payload
+        isLoading: action.isLoading
       };
     case types.SET_ACCESS_TOKEN:
       return {
         ...state,
-        accessToken: action.payload
+        accessToken: action.accessToken
       };
     case types.HAS_ERROR:
       return {
         ...state,
         hasError: true,
-        errors: [action.payload]
+        errors: [action.errors]
+      };
+    case types.SET_REDIRECT:
+      return {
+        ...state,
+        redirect: action.redirect
       };
     default:
       return {
