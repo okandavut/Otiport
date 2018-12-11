@@ -1,0 +1,16 @@
+.business-header {
+    height: 50vh;
+    min-height: 300px;
+    background: center center no-repeat scroll;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;
+  }
+  .display-5{
+      color:black !important; 
+  }
+  
+  .card {
+    height: 100%;
+  }
