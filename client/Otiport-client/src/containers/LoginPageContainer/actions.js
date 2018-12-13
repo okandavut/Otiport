@@ -22,7 +22,12 @@ export function setAccessToken(accessToken: string) {
     accessToken: accessToken
   };
 }
-
+export function setRedirect(redirect: boolean) {
+  return {
+    type: types.SET_REDIRECT,
+    createUserRedirect: redirect
+  };
+}
 export function login(emailAddress, password) {
   return dispatch => {
     dispatch(changeIsLoading(true));
@@ -35,6 +40,8 @@ export function login(emailAddress, password) {
     ).then(res => {
       if (!res.isSuccess) {
         dispatch(hasError("Invalid username or password"));
+      } else {
+        dispatch(setRedirect(true));
       }
       dispatch(setAccessToken(res.accessToken));
       dispatch(changeIsLoading(false));

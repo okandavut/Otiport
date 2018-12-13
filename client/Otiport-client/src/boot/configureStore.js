@@ -16,7 +16,7 @@ const logger = createLogger({});
 export default function configureStore(onComplete: () => void): any {
   const reduxCompose = compose(applyMiddleware(thunk, logger));
   const store = createStore(persistorReducer, reduxCompose);
-  let storePersistor = persistStore(store);
+  // let storePersistor = persistStore(store);
 
-  return { store, storePersistor };
+  return { store };
 }

@@ -31,6 +31,19 @@ export function setDistricts(districts: Array<Object>) {
   };
 }
 
+export function setRedirect(redirect: boolean) {
+  return {
+    type: types.SET_REDIRECT,
+    loginRedirect: redirect
+  };
+}
+export function hasError(error: string) {
+  return {
+    type: types.HAS_ERROR,
+    error: error
+  };
+}
+
 export function createUser(
   userName,
   password,
@@ -62,7 +75,9 @@ export function createUser(
       })
     ).then(res => {
       if (!res.isSuccess) {
-        console.log("hataa");
+        dispatch(hasError("Problem occured"));
+      } else {
+        dispatch(setRedirect(true));
       }
     });
     dispatch(changeIsLoading(false));

@@ -264,11 +264,12 @@ export default class CreateUser extends React.Component<Props, State> {
                 onChange={this.handleChange}
               >
                 <option selected={true}>Lütfen Şehir Seçiniz</option>
-                {this.props.cities !== undefined &&this.props.cities.map(res => (
-                  <option key={res.id} value={res.id}>
-                    {res.name}
-                  </option>
-                ))}
+                {this.props.cities !== undefined &&
+                  this.props.cities.map(res => (
+                    <option key={res.id} value={res.id}>
+                      {res.name}
+                    </option>
+                  ))}
                 ;
               </select>
               {this.validator.message(
@@ -292,11 +293,12 @@ export default class CreateUser extends React.Component<Props, State> {
                 onChange={this.handleChange}
               >
                 <option selected={true}>Lütfen İlçe Seçiniz</option>
-                {this.props.districts !== undefined && this.props.districts.map(res => (
-                  <option key={res.id} value={res.id}>
-                    {res.name}
-                  </option>
-                ))}
+                {this.props.districts !== undefined &&
+                  this.props.districts.map(res => (
+                    <option key={res.id} value={res.id}>
+                      {res.name}
+                    </option>
+                  ))}
                 ;
               </select>
               {this.validator.message(

@@ -5,7 +5,8 @@ const intializedState = {
   errors: [],
   countries: [],
   cities: [],
-  districts: []
+  districts: [],
+  redirect: false
 };
 
 export default function(state: any = intializedState, action: Function) {
@@ -32,6 +33,11 @@ export default function(state: any = intializedState, action: Function) {
       return {
         ...state,
         districts: action.districts
+      };
+    case types.SET_REDIRECT:
+      return {
+        ...state,
+        loginRedirect: action.loginRedirect
       };
     default:
       return state;
