@@ -37,7 +37,7 @@ export default function(state: any = intializedState, action: Function) {
     case types.SET_REDIRECT:
       return {
         ...state,
-        redirect: action.redirect
+        loginRedirect: action.loginRedirect
       };
     default:
       return state;

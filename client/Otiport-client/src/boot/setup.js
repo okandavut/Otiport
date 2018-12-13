@@ -14,9 +14,9 @@ export default class Setup extends React.Component<Props, State> {
   render() {
     return (
       <Provider store={store}>
-        <PersistGate loading={<p>App is loading...</p>} persistor={storePersistor}>
-          <App />
-        </PersistGate>
+        {/* <PersistGate loading={<p>App is loading...</p>} persistor={storePersistor}> */}
+        <App />
+        {/* </PersistGate> */}
       </Provider>
     );
   }

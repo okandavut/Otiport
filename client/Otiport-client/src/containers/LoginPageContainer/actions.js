@@ -25,7 +25,7 @@ export function setAccessToken(accessToken: string) {
 export function setRedirect(redirect: boolean) {
   return {
     type: types.SET_REDIRECT,
-    redirect: redirect
+    createUserRedirect: redirect
   };
 }
 export function login(emailAddress, password) {

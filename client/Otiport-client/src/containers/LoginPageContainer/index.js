@@ -7,7 +7,7 @@ export interface Props {
   isLoading: boolean;
   accessToken: string;
   login: Function;
-  redirect: boolean;
+  createUserRedirect: boolean;
 }
 export interface State {}
 
@@ -23,7 +23,7 @@ class LoginPageContainer extends React.Component<Props, State> {
           login={this.login.bind(this)}
           isLoading={this.props.isLoading}
         />
-        {this.props.redirect && <Redirect to={"/MainPage"} />}
+        {this.props.createUserRedirect && <Redirect to={"/MainPage"} />}
       </div>
     );
   }
@@ -38,7 +38,7 @@ function bindAction(dispatch) {
 const mapStateToProps = state => ({
   isLoading: state.loginPageReducer.isLoading,
   accessToken: state.loginPageReducer.accessToken,
-  redirect: state.loginPageReducer.redirect
+  createUserRedirect: state.loginPageReducer.createUserRedirect
 });
 
 export default connect(

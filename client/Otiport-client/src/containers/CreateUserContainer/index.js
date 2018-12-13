@@ -13,7 +13,7 @@ export interface Props {
   countries: Array<Object>;
   cities: Array<Object>;
   districts: Array<Object>;
-  redirect: false;
+  loginRedirect: false;
 }
 export interface State {}
 
@@ -68,7 +68,7 @@ class createUserContainer extends React.Component<Props, State> {
           districts={this.props.districts}
           isLoading={false}
         />
-        {this.props.redirect && <Redirect to={"/Login"} />}
+        {this.props.loginRedirect && <Redirect to={"/Login"} />}
       </div>
     );
   }
@@ -113,7 +113,7 @@ const mapStateToProps = state => ({
   countries: state.createUserPageReducer.countries,
   cities: state.createUserPageReducer.cities,
   districts: state.createUserPageReducer.districts,
-  redirect: state.createUserPageReducer.redirect
+  loginRedirect: state.createUserPageReducer.loginRedirect
 });
 
 export default connect(

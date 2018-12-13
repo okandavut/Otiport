@@ -34,7 +34,7 @@ export function setDistricts(districts: Array<Object>) {
 export function setRedirect(redirect: boolean) {
   return {
     type: types.SET_REDIRECT,
-    redirect: redirect
+    loginRedirect: redirect
   };
 }
 export function hasError(error: string) {
