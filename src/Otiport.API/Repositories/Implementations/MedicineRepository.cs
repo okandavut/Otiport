@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using Otiport.API.Contract.Models;
 using Otiport.API.Data;
 using Otiport.API.Data.Entities.Medicine;
 
@@ -42,24 +44,18 @@ namespace Otiport.API.Repositories.Implementations
         public async Task<IEnumerable<MedicineEntity>> GetMedicinesAsync()
         {
             return await _dbContext.Medicines.ToListAsync();
+ 
         }
 
-        public async Task<bool> AddMedicineAsync(string title, string description)
+        public async Task<bool> AddMedicineAsync(MedicineEntity entity)
         {
-            MedicineEntity entity = new MedicineEntity()
-            {
-                Title = title,
-                Description = description
-
-            };
             await _dbContext.Medicines.AddAsync(entity);
             return await SaveAsync();
-
         }
 
-        public async Task<bool> DeleteMedicineAsync(int medicineId)
+        public async Task<bool> DeleteMedicineAsync(MedicineEntity entity)
         {
-            _dbContext.Medicines.Remove(_dbContext.Medicines.Find(medicineId));
+            _dbContext.Medicines.Remove(entity);
             return await SaveAsync();
         }
     }
