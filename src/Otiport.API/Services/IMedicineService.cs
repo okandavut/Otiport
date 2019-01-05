@@ -11,6 +11,6 @@ namespace Otiport.API.Services
     {
         Task<AddMedicineResponse> AddMedicineAsync(AddMedicineRequest request);
         Task<DeleteMedicineResponse> DeleteMedicineAsync(DeleteMedicineRequest request);
-        Task<GetMedicinesResponse> GetMedicinesAsync();
+        Task<GetMedicinesResponse> GetMedicinesAsync(GetMedicinesRequest request);
     }
 }
