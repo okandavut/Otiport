@@ -17,7 +17,7 @@ namespace Otiport.API.Extensions
         public static IServiceCollection AddaDataLayer(this IServiceCollection services)
         {
             var configuration = services.BuildServiceProvider().GetService<IConfiguration>();
-            
+
             services.AddDbContext<OtiportDbContext>(options =>
             {
                 options.UseSqlServer(configuration.GetConnectionString("OtiportDb"), builder => builder.MigrationsAssembly("Otiport.API"));
@@ -32,7 +32,7 @@ namespace Otiport.API.Extensions
             services.AddScoped<IMedicineRepository, MedicineRepository>();
             return services;
         }
-        
+
         public static IServiceCollection AddServicesLayer(this IServiceCollection services)
         {
             services.AddScoped<IUserService, UserService>();
@@ -41,10 +41,11 @@ namespace Otiport.API.Extensions
 
             return services;
         }
-        
+
         public static IServiceCollection AddMapperLayer(this IServiceCollection services)
         {
             services.AddTransient<IUserMapper, UserMapper>();
+            services.AddTransient<IMedicineMapper, MedicineMapper>();
             return services;
         }
 
