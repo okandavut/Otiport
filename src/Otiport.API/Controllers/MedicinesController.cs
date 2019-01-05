@@ -20,39 +20,23 @@ namespace Otiport.API.Controllers
         {
             _medicineService = medicineService;
         }
-
-        [HttpPost, Route("addMedicine")]
+        [HttpPost]
         public async Task<IActionResult> AddMedicine([FromBody] AddMedicineRequest request)
         {
             var response = await _medicineService.AddMedicineAsync(request);
-            if (response == null)
-            {
-                return BadRequest();
-            }
-
-            return StatusCode((int)HttpStatusCode.OK, response);
+            return GenerateResponse(response);
         }
-        [HttpGet, Route("medicines")]
-        public async Task<IActionResult> GetMedicines()
+        [HttpGet]
+        public async Task<IActionResult> GetMedicines(GetMedicinesRequest request)
         {
-            var response = await _medicineService.GetMedicinesAsync();
-            if (response == null)
-            {
-                return BadRequest();
-            }
-            return StatusCode((int)HttpStatusCode.OK, response);
+            var response = await _medicineService.GetMedicinesAsync(request);
+            return GenerateResponse(response);
         }
-
-        [HttpPost, Route("deleteMedicine")]
+        [HttpDelete]
         public async Task<IActionResult> DeleteMedicine([FromBody] DeleteMedicineRequest request)
         {
             var response = await _medicineService.DeleteMedicineAsync(request);
-            if (response == null)
-            {
-                return BadRequest();
-            }
-
-            return StatusCode((int)HttpStatusCode.OK, response);
+            return GenerateResponse(response);
         }
     }
 }
