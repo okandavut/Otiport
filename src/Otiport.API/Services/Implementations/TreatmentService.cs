@@ -34,7 +34,7 @@ namespace Otiport.API.Services.Implementations
             bool status = await _treatmentRepository.AddTreatmentAsync(entity);
             if (status)
             {
-                response.StatusCode = (int)HttpStatusCode.OK;
+                response.StatusCode = (int)HttpStatusCode.Created;
             }
             else
             {

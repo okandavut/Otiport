@@ -36,7 +36,10 @@ namespace Otiport.API.Services.Implementations
             var response = new AddMedicineResponse();
             MedicineEntity entity = _medicineMapper.ToEntity(request);
             bool status = await _medicineRepository.AddMedicineAsync(entity);
-            if (status) response.StatusCode = (int)HttpStatusCode.OK;
+            if (status)
+            {
+                response.StatusCode = (int)HttpStatusCode.Created;
+            }
             else
             {
                 response.StatusCode = (int)HttpStatusCode.BadRequest;
