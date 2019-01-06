@@ -2,13 +2,17 @@ using Otiport.API.Data.Entities.Users;
 using System;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Otiport.API.Data.Entities.Patient {
-    [Table ("Patients")]
-    public class PatientEntity : BaseEntity<Guid> {
+namespace Otiport.API.Data.Entities.Patient
+{
+    [Table("Patients")]
+    public class PatientEntity : BaseEntity<Guid>
+    {
 
-        public PatientEntity () {
-            Id = Guid.NewGuid ();
+        public PatientEntity()
+        {
+            Id = Guid.NewGuid();
         }
+
         public string Name { get; set; }
         public string Surname { get; set; }
         public DateTime BirthDate { get; set; }

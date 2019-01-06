@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Otiport.API.Data;
 
 namespace Otiport.API.Migrations
 {
     [DbContext(typeof(OtiportDbContext))]
-    partial class OtiportDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190104204408_Medicine entity was added")]
+    partial class Medicineentitywasadded
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -106,68 +108,6 @@ namespace Otiport.API.Migrations
                     b.HasIndex("CityId");
 
                     b.ToTable("Districts");
-                });
-
-            modelBuilder.Entity("Otiport.API.Data.Entities.Medicine.MedicineEntity", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("CreatedBy");
-
-                    b.Property<DateTime>("CreatedOn");
-
-                    b.Property<string>("Description");
-
-                    b.Property<bool>("IsActive");
-
-                    b.Property<bool>("IsDeleted");
-
-                    b.Property<string>("Title");
-
-                    b.Property<string>("UpdatedBy");
-
-                    b.Property<DateTime?>("UpdatedOn");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Medicines");
-                });
-
-            modelBuilder.Entity("Otiport.API.Data.Entities.Medicine.MedicinesToPatientEntity", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("CreatedBy");
-
-                    b.Property<DateTime>("CreatedOn");
-
-                    b.Property<bool>("IsActive");
-
-                    b.Property<bool>("IsDeleted");
-
-                    b.Property<int>("MedicineId");
-
-                    b.Property<int>("PatientId");
-
-                    b.Property<Guid?>("PatientId1");
-
-                    b.Property<int?>("ProfileItemId");
-
-                    b.Property<string>("UpdatedBy");
-
-                    b.Property<DateTime?>("UpdatedOn");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("PatientId1");
-
-                    b.HasIndex("ProfileItemId");
-
-                    b.ToTable("MedicinesToPatients");
                 });
 
             modelBuilder.Entity("Otiport.API.Data.Entities.Patient.PatientEntity", b =>
@@ -435,17 +375,6 @@ namespace Otiport.API.Migrations
                     b.HasOne("Otiport.API.Data.Entities.AddressInformations.CityEntity", "City")
                         .WithMany()
                         .HasForeignKey("CityId");
-                });
-
-            modelBuilder.Entity("Otiport.API.Data.Entities.Medicine.MedicinesToPatientEntity", b =>
-                {
-                    b.HasOne("Otiport.API.Data.Entities.Patient.PatientEntity", "Patient")
-                        .WithMany()
-                        .HasForeignKey("PatientId1");
-
-                    b.HasOne("Otiport.API.Data.Entities.Medicine.MedicineEntity", "ProfileItem")
-                        .WithMany()
-                        .HasForeignKey("ProfileItemId");
                 });
 
             modelBuilder.Entity("Otiport.API.Data.Entities.Patient.PatientEntity", b =>

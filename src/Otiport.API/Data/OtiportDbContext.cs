@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Otiport.API.Data.Entities.AddressInformations;
+using Otiport.API.Data.Entities.Medicine;
 using Otiport.API.Data.Entities.Patient;
 using Otiport.API.Data.Entities.ProfileItem;
 using Otiport.API.Data.Entities.Treatment;
@@ -25,5 +26,7 @@ namespace Otiport.API.Data
         public virtual DbSet<CountryEntity> Countries { get; set; }
         public virtual DbSet<CityEntity> Cities { get; set; }
         public virtual DbSet<DistrictEntity> Districts{ get; set; }
+        public virtual DbSet<MedicineEntity> Medicines{ get; set; }
+        public virtual DbSet<MedicinesToPatientEntity> MedicinesToPatients{ get; set; }
     }
 }
