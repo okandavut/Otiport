@@ -38,5 +38,13 @@ namespace Otiport.API.Controllers
             var response = await _medicineService.DeleteMedicineAsync(request);
             return GenerateResponse(response);
         }
+
+        [HttpPut]
+        public async Task<IActionResult> UpdateMedicine([FromBody] UpdateMedicineRequest request)
+        {
+            var response = await _medicineService.UpdateMedicinesAsync(request);
+            return GenerateResponse(response);
+
+        }
     }
 }
