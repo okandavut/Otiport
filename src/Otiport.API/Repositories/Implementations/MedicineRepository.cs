@@ -44,7 +44,7 @@ namespace Otiport.API.Repositories.Implementations
         public async Task<IEnumerable<MedicineEntity>> GetMedicinesAsync()
         {
             return await _dbContext.Medicines.ToListAsync();
- 
+
         }
 
         public async Task<bool> AddMedicineAsync(MedicineEntity entity)
@@ -57,6 +57,12 @@ namespace Otiport.API.Repositories.Implementations
         {
             _dbContext.Medicines.Remove(entity);
             return await SaveAsync();
+        }
+
+        public async Task<MedicineEntity> GetMedicineById(MedicineEntity entity)
+        {
+            var medicineEntity = await _dbContext.Medicines.Where(x => x.Id == entity.Id).SingleAsync();
+            return medicineEntity;
         }
     }
 }

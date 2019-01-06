@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore.Query.ExpressionVisitors;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using Otiport.API.Contract.Request.Medicines;
@@ -51,7 +52,7 @@ namespace Otiport.API.Services.Implementations
         public async Task<DeleteMedicineResponse> DeleteMedicineAsync(DeleteMedicineRequest request)
         {
             var response = new DeleteMedicineResponse();
-            MedicineEntity entity = _dbContext.Medicines.Find(request.MedicineId);
+            MedicineEntity entity = await _medicineRepository.GetMedicineById(new MedicineEntity() { Id = request.MedicineId });
             bool status = await _medicineRepository.DeleteMedicineAsync(entity);
             if (status) response.StatusCode = (int)HttpStatusCode.OK;
             else
