@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Otiport.API.Contract.Models;
+using Otiport.API.Contract.Request.Treatments;
 using Otiport.API.Data.Entities.Treatment;
 
 namespace Otiport.API.Mappers.Implementations
@@ -26,6 +27,15 @@ namespace Otiport.API.Mappers.Implementations
                 Id = model.Id,
                 Title = model.Title,
                 Description = model.Description
+            };
+        }
+
+        public TreatmentEntity ToEntity(AddTreatmentRequest request)
+        {
+            return new TreatmentEntity()
+            {
+                Description = request.Description,
+                Title = request.Title
             };
         }
     }

@@ -16,36 +16,33 @@ namespace Otiport.API.Services.Implementations
     public class TreatmentService : ITreatmentService
     {
         private readonly ILogger<MedicineService> _logger;
-        private readonly OtiportDbContext _dbContext;
-
         private readonly ITreatmentRepository _treatmentRepository;
         private readonly ITreatmentMapper _treatmentMapper;
 
         public TreatmentService(ILogger<MedicineService> logger,
             ITreatmentRepository treatmentRepository,
-            OtiportDbContext dbContext,
             ITreatmentMapper treatmentMapper)
         {
             _logger = logger;
             _treatmentRepository = treatmentRepository;
-            _dbContext = dbContext;
             _treatmentMapper = treatmentMapper;
         }
         public async Task<AddTreatmentResponse> AddTreatmentAsync(AddTreatmentRequest request)
         {
             var response = new AddTreatmentResponse();
-            TreatmentEntity entity = new TreatmentEntity()
-            {
-                Description = request.Description,
-                Title = request.Title
-            };
+            TreatmentEntity entity = _treatmentMapper.ToEntity(request); 
             bool status = await _treatmentRepository.AddTreatmentAsync(entity);
-            if (status) response.StatusCode = (int)HttpStatusCode.OK;
+            if (status)
+            {
+                response.StatusCode = (int)HttpStatusCode.OK;
+            }
             else
             {
                 response.StatusCode = (int)HttpStatusCode.BadRequest;
-                _logger.LogWarning(""); //TODO - LOGGING
+                //TODO (okandavut) : LOGGING
+                _logger.LogWarning("");
             }
+            
             return response;
         }
 
@@ -53,17 +50,25 @@ namespace Otiport.API.Services.Implementations
         {
             var response = new DeleteTreatmentResponse();
             TreatmentEntity entity = await _treatmentRepository.GetTreatmentById(request.Id);
+           
             if (entity == null)
             {
                 response.StatusCode = (int)HttpStatusCode.NotFound;
+                return response;
             }
+            
             bool status = await _treatmentRepository.DeleteTreatmentAsync(entity);
-            if (status) response.StatusCode = (int)HttpStatusCode.OK;
+            if (status)
+            {
+                response.StatusCode = (int)HttpStatusCode.OK;
+            }
             else
             {
                 response.StatusCode = (int)HttpStatusCode.BadRequest;
-                _logger.LogWarning(""); //TODO - LOGGING
+                //TODO (okandavut) : LOGGING
+                _logger.LogWarning("");
             }
+            
             return response;
         }
 
@@ -79,14 +84,27 @@ namespace Otiport.API.Services.Implementations
         {
             var response = new UpdateTreatmentResponse();
             TreatmentEntity entity = await _treatmentRepository.GetTreatmentById(request.Id);
+            
             if (entity == null)
             {
                 response.StatusCode = (int)HttpStatusCode.NotFound;
                 return response;
             }
+            
             entity.Description = request.Description;
             entity.Title = request.Title;
-            var list = await _treatmentRepository.UpdateTreatmentsAsync(entity);
+            var result = await _treatmentRepository.UpdateTreatmentsAsync(entity);
+
+            if (result)
+            {
+                response.StatusCode = (int) HttpStatusCode.OK;
+            }
+            else
+            {
+                response.StatusCode = (int) HttpStatusCode.InternalServerError;
+                _logger.LogError("An Error occurred");
+            }
+            
             return response;
         }
     }

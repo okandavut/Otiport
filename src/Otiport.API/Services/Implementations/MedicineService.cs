@@ -19,29 +19,22 @@ namespace Otiport.API.Services.Implementations
     public class MedicineService : IMedicineService
     {
         private readonly ILogger<UserService> _logger;
-        private readonly OtiportDbContext _dbContext;
-
         private readonly IMedicineRepository _medicineRepository;
         private readonly IMedicineMapper _medicineMapper;
 
         public MedicineService(ILogger<UserService> logger, IUserMapper userMapper,
             IMedicineRepository medicineRepository,
-            OtiportDbContext dbContext,
             IMedicineMapper medicineMapper)
         {
             _logger = logger;
             _medicineRepository = medicineRepository;
-            _dbContext = dbContext;
             _medicineMapper = medicineMapper;
         }
+            
         public async Task<AddMedicineResponse> AddMedicineAsync(AddMedicineRequest request)
         {
             var response = new AddMedicineResponse();
-            MedicineEntity entity = new MedicineEntity()
-            {
-                Description = request.Description,
-                Title = request.Title
-            };
+            MedicineEntity entity = _medicineMapper.ToEntity(request);
             bool status = await _medicineRepository.AddMedicineAsync(entity);
             if (status) response.StatusCode = (int)HttpStatusCode.OK;
             else
@@ -56,17 +49,24 @@ namespace Otiport.API.Services.Implementations
         {
             var response = new DeleteMedicineResponse();
             MedicineEntity entity = await _medicineRepository.GetMedicineById(request.MedicineId);
+           
             if (entity == null)
             {
                 response.StatusCode = (int)HttpStatusCode.NotFound;
+                return response;
             }
+            
             bool status = await _medicineRepository.DeleteMedicineAsync(entity);
-            if (status) response.StatusCode = (int)HttpStatusCode.OK;
+            if (status)
+            {
+                response.StatusCode = (int)HttpStatusCode.OK;
+            }
             else
             {
                 response.StatusCode = (int)HttpStatusCode.BadRequest;
                 _logger.LogWarning(""); //TODO - LOGGING
             }
+          
             return response;
         }
 
@@ -89,7 +89,18 @@ namespace Otiport.API.Services.Implementations
             }
             entity.Description = request.Description;
             entity.Title = request.Title;
-            var list = await _medicineRepository.UpdateMedicinesAsync(entity);
+            var result = await _medicineRepository.UpdateMedicinesAsync(entity);
+
+            if (result)
+            {
+                response.StatusCode = (int) HttpStatusCode.OK;
+            }
+            else
+            {
+                response.StatusCode = (int) HttpStatusCode.InternalServerError;
+                _logger.LogError("An error occurred");
+            }
+            
             return response;
         }
     }
