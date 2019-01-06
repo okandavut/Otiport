@@ -30,6 +30,7 @@ namespace Otiport.API.Extensions
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IAdressInformationRepository, AdressInformationRepository>();
             services.AddScoped<IMedicineRepository, MedicineRepository>();
+            services.AddScoped<ITreatmentRepository, TreatmentRepository>();
             return services;
         }
 
@@ -38,6 +39,7 @@ namespace Otiport.API.Extensions
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IAddressInformationService, AddressInformationService>();
             services.AddScoped<IMedicineService, MedicineService>();
+            services.AddScoped<ITreatmentService, TreatmentService>();
 
             return services;
         }
@@ -46,6 +48,7 @@ namespace Otiport.API.Extensions
         {
             services.AddTransient<IUserMapper, UserMapper>();
             services.AddTransient<IMedicineMapper, MedicineMapper>();
+            services.AddTransient<ITreatmentMapper, TreatmentMapper>();
             return services;
         }
 
