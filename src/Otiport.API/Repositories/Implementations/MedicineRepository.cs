@@ -59,9 +59,9 @@ namespace Otiport.API.Repositories.Implementations
             return await SaveAsync();
         }
 
-        public async Task<MedicineEntity> GetMedicineById(MedicineEntity entity)
+        public async Task<MedicineEntity> GetMedicineById(int id)
         {
-            var medicineEntity = await _dbContext.Medicines.Where(x => x.Id == entity.Id).SingleAsync();
+            var medicineEntity = await _dbContext.Medicines.FindAsync(id);
             return medicineEntity;
         }
     }

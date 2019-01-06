@@ -55,7 +55,7 @@ namespace Otiport.API.Services.Implementations
         public async Task<DeleteMedicineResponse> DeleteMedicineAsync(DeleteMedicineRequest request)
         {
             var response = new DeleteMedicineResponse();
-            MedicineEntity entity = await _medicineRepository.GetMedicineById(new MedicineEntity() { Id = request.MedicineId });
+            MedicineEntity entity = await _medicineRepository.GetMedicineById(request.MedicineId);
             if (entity != null)
             {
                 bool status = await _medicineRepository.DeleteMedicineAsync(entity);
