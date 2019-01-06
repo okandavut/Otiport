@@ -56,19 +56,16 @@ namespace Otiport.API.Services.Implementations
         {
             var response = new DeleteMedicineResponse();
             MedicineEntity entity = await _medicineRepository.GetMedicineById(request.MedicineId);
-            if (entity != null)
+            if (entity == null)
             {
-                bool status = await _medicineRepository.DeleteMedicineAsync(entity);
-                if (status) response.StatusCode = (int)HttpStatusCode.OK;
-                else
-                {
-                    response.StatusCode = (int)HttpStatusCode.BadRequest;
-                    _logger.LogWarning(""); //TODO - LOGGING
-                }
+                response.StatusCode = (int)HttpStatusCode.NotFound;
             }
+            bool status = await _medicineRepository.DeleteMedicineAsync(entity);
+            if (status) response.StatusCode = (int)HttpStatusCode.OK;
             else
             {
                 response.StatusCode = (int)HttpStatusCode.BadRequest;
+                _logger.LogWarning(""); //TODO - LOGGING
             }
             return response;
         }

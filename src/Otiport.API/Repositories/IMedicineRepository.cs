@@ -12,6 +12,6 @@ namespace Otiport.API.Repositories
         Task<IEnumerable<MedicineEntity>> GetMedicinesAsync();
         Task<bool> AddMedicineAsync(MedicineEntity entity);
         Task<bool> DeleteMedicineAsync(MedicineEntity entity);
-        Task<MedicineEntity> GetMedicineById(int entity);
+        Task<MedicineEntity> GetMedicineById(int id);
     }
 }
