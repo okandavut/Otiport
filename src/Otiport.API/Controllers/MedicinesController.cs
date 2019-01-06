@@ -39,9 +39,11 @@ namespace Otiport.API.Controllers
             return GenerateResponse(response);
         }
 
-        [HttpPut]
-        public async Task<IActionResult> UpdateMedicine([FromBody] UpdateMedicineRequest request)
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateMedicine([FromRoute] int id, [FromBody] UpdateMedicineRequest request)
         {
+            request = request ?? new UpdateMedicineRequest();
+            request.Id = id;
             var response = await _medicineService.UpdateMedicinesAsync(request);
             return GenerateResponse(response);
 
