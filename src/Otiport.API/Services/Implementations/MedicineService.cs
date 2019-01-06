@@ -77,5 +77,20 @@ namespace Otiport.API.Services.Implementations
             response.Medicines = list.Select(x => _medicineMapper.ToModel(x)).ToList();
             return response;
         }
+
+        public async Task<UpdateMedicineResponse> UpdateMedicinesAsync(UpdateMedicineRequest request)
+        {
+            var response = new UpdateMedicineResponse();
+            MedicineEntity entity = await _medicineRepository.GetMedicineById(request.Id);
+            if (entity == null)
+            {
+                response.StatusCode = (int)HttpStatusCode.NotFound;
+                return response;
+            }
+            entity.Description = request.Description;
+            entity.Title = request.Title;
+            var list = await _medicineRepository.UpdateMedicinesAsync(entity);
+            return response;
+        }
     }
 }
