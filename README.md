@@ -1,3 +1,21 @@
-# Otiport
+# Otiport   [![Awesome](https://cdn.rawgit.com/sindresorhus/awesome/d7305f38d29fed78fa85652e3a63e154dd8e8829/media/badge.svg)](https://github.com/sindresorhus/awesome)
 
-We are making the best impact for people. Coming soon details
+A portal for autistic individuals
+
+Technologies :
+
+-For Backend :
+ * ASP.NET Core
+ * EF Core
+ * Entity Framework
+ * Swagger
+
+
+-For Client :
+ * React
+ * Redux
+
+
+-Unit test :
+ * Moq
+ * XUNIT
