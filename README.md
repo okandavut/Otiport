@@ -4,18 +4,16 @@ A portal for autistic individuals
 
 Technologies :
 
--For Backend :
- * ASP.NET Core
- * EF Core
- * Entity Framework
- * Swagger
-
-
--For Client :
- * React
- * Redux
-
-
--Unit test :
- * Moq
- * XUNIT
+- For Backend :
+  * ASP.NET Core
+  * EF Core
+  * Entity Framework
+  * Swagger
+ 
+- For Client :
+  * React
+  * Redux
+ 
+- Unit test :
+  * Moq
+  * XUNIT
