@@ -12,6 +12,7 @@ using Otiport.API.Services;
 namespace Otiport.API.Controllers
 {
     [Route("medicines")]
+    [ApiController]
     public class MedicinesController : ApiControllerBase
     {
         private readonly IMedicineService _medicineService;
@@ -27,8 +28,9 @@ namespace Otiport.API.Controllers
             return GenerateResponse(response);
         }
         [HttpGet]
-        public async Task<IActionResult> GetMedicines(GetMedicinesRequest request)
+        public async Task<IActionResult> GetMedicines()
         {
+            GetMedicinesRequest request = new GetMedicinesRequest();
             var response = await _medicineService.GetMedicinesAsync(request);
             return GenerateResponse(response);
         }

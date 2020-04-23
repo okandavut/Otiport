@@ -1,10 +1,9 @@
 ﻿using System;
-using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Otiport.API.Migrations
 {
-    public partial class initialdb : Migration
+    public partial class firstmigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -13,7 +12,7 @@ namespace Otiport.API.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     IsActive = table.Column<bool>(nullable: false),
                     IsDeleted = table.Column<bool>(nullable: false),
                     CreatedOn = table.Column<DateTime>(nullable: false),
@@ -29,11 +28,31 @@ namespace Otiport.API.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Medicines",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    IsActive = table.Column<bool>(nullable: false),
+                    IsDeleted = table.Column<bool>(nullable: false),
+                    CreatedOn = table.Column<DateTime>(nullable: false),
+                    CreatedBy = table.Column<string>(nullable: true),
+                    UpdatedOn = table.Column<DateTime>(nullable: true),
+                    UpdatedBy = table.Column<string>(nullable: true),
+                    Title = table.Column<string>(nullable: true),
+                    Description = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Medicines", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "ProfileItems",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     IsActive = table.Column<bool>(nullable: false),
                     IsDeleted = table.Column<bool>(nullable: false),
                     CreatedOn = table.Column<DateTime>(nullable: false),
@@ -53,7 +72,7 @@ namespace Otiport.API.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     IsActive = table.Column<bool>(nullable: false),
                     IsDeleted = table.Column<bool>(nullable: false),
                     CreatedOn = table.Column<DateTime>(nullable: false),
@@ -73,7 +92,7 @@ namespace Otiport.API.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     IsActive = table.Column<bool>(nullable: false),
                     IsDeleted = table.Column<bool>(nullable: false),
                     CreatedOn = table.Column<DateTime>(nullable: false),
@@ -92,7 +111,7 @@ namespace Otiport.API.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     IsActive = table.Column<bool>(nullable: false),
                     IsDeleted = table.Column<bool>(nullable: false),
                     CreatedOn = table.Column<DateTime>(nullable: false),
@@ -119,7 +138,7 @@ namespace Otiport.API.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     IsActive = table.Column<bool>(nullable: false),
                     IsDeleted = table.Column<bool>(nullable: false),
                     CreatedOn = table.Column<DateTime>(nullable: false),
@@ -232,11 +251,45 @@ namespace Otiport.API.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "MedicinesToPatients",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    IsActive = table.Column<bool>(nullable: false),
+                    IsDeleted = table.Column<bool>(nullable: false),
+                    CreatedOn = table.Column<DateTime>(nullable: false),
+                    CreatedBy = table.Column<string>(nullable: true),
+                    UpdatedOn = table.Column<DateTime>(nullable: true),
+                    UpdatedBy = table.Column<string>(nullable: true),
+                    MedicineId = table.Column<int>(nullable: false),
+                    PatientId = table.Column<int>(nullable: false),
+                    ProfileItemId = table.Column<int>(nullable: true),
+                    PatientId1 = table.Column<Guid>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_MedicinesToPatients", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_MedicinesToPatients_Patients_PatientId1",
+                        column: x => x.PatientId1,
+                        principalTable: "Patients",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_MedicinesToPatients_Medicines_ProfileItemId",
+                        column: x => x.ProfileItemId,
+                        principalTable: "Medicines",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "ProfileItemsToPatients",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     IsActive = table.Column<bool>(nullable: false),
                     IsDeleted = table.Column<bool>(nullable: false),
                     CreatedOn = table.Column<DateTime>(nullable: false),
@@ -265,11 +318,11 @@ namespace Otiport.API.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "ThreatmentToPatients",
+                name: "TreatmentToPatients",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     IsActive = table.Column<bool>(nullable: false),
                     IsDeleted = table.Column<bool>(nullable: false),
                     CreatedOn = table.Column<DateTime>(nullable: false),
@@ -283,15 +336,15 @@ namespace Otiport.API.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ThreatmentToPatients", x => x.Id);
+                    table.PrimaryKey("PK_TreatmentToPatients", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_ThreatmentToPatients_Patients_PatientId1",
+                        name: "FK_TreatmentToPatients_Patients_PatientId1",
                         column: x => x.PatientId1,
                         principalTable: "Patients",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_ThreatmentToPatients_Treatments_ProfileItemId",
+                        name: "FK_TreatmentToPatients_Treatments_ProfileItemId",
                         column: x => x.ProfileItemId,
                         principalTable: "Treatments",
                         principalColumn: "Id",
@@ -309,6 +362,16 @@ namespace Otiport.API.Migrations
                 column: "CityId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_MedicinesToPatients_PatientId1",
+                table: "MedicinesToPatients",
+                column: "PatientId1");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_MedicinesToPatients_ProfileItemId",
+                table: "MedicinesToPatients",
+                column: "ProfileItemId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Patients_UserId1",
                 table: "Patients",
                 column: "UserId1");
@@ -324,13 +387,13 @@ namespace Otiport.API.Migrations
                 column: "ProfileItemId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ThreatmentToPatients_PatientId1",
-                table: "ThreatmentToPatients",
+                name: "IX_TreatmentToPatients_PatientId1",
+                table: "TreatmentToPatients",
                 column: "PatientId1");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ThreatmentToPatients_ProfileItemId",
-                table: "ThreatmentToPatients",
+                name: "IX_TreatmentToPatients_ProfileItemId",
+                table: "TreatmentToPatients",
                 column: "ProfileItemId");
 
             migrationBuilder.CreateIndex(
@@ -357,10 +420,16 @@ namespace Otiport.API.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
+                name: "MedicinesToPatients");
+
+            migrationBuilder.DropTable(
                 name: "ProfileItemsToPatients");
 
             migrationBuilder.DropTable(
-                name: "ThreatmentToPatients");
+                name: "TreatmentToPatients");
+
+            migrationBuilder.DropTable(
+                name: "Medicines");
 
             migrationBuilder.DropTable(
                 name: "ProfileItems");

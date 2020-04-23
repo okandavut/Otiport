@@ -10,6 +10,7 @@ using Otiport.API.Services;
 namespace Otiport.API.Controllers
 {
     [Route("users")]
+    [ApiController]
     public class UsersController : ApiControllerBase
     {
         private readonly IUserService _userService;

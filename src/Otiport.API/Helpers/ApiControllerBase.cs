@@ -3,7 +3,7 @@ using Otiport.API.Contract;
 
 namespace Otiport.API.Helpers
 {
-    public class ApiControllerBase : Microsoft.AspNetCore.Mvc.ControllerBase
+    public class ApiControllerBase : Controller
     {
         [NonAction]
         public IActionResult GenerateResponse(ResponseBase response)

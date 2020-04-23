@@ -1,17 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore.Query.ExpressionVisitors;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using Otiport.API.Contract.Request.Medicines;
 using Otiport.API.Contract.Response.Medicines;
-using Otiport.API.Data;
 using Otiport.API.Data.Entities.Medicine;
 using Otiport.API.Mappers;
-using Otiport.API.Providers;
 using Otiport.API.Repositories;
 
 namespace Otiport.API.Services.Implementations

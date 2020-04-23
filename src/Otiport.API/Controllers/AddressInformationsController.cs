@@ -13,6 +13,7 @@ using Otiport.API.Services;
 namespace Otiport.API.Controllers
 {
     [Route("address-informations")]
+    [ApiController]
     public class AddressInformationsController : ApiControllerBase
     {
         private readonly IAddressInformationService _addressInformationService;

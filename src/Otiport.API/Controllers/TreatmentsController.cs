@@ -10,6 +10,7 @@ using Otiport.API.Services;
 namespace Otiport.API.Controllers
 {
     [Route("Treatments")]
+    [ApiController]
     public class TreatmentsController : ApiControllerBase
     {
         private readonly ITreatmentService _treatmentService;
@@ -26,8 +27,9 @@ namespace Otiport.API.Controllers
             return GenerateResponse(response);
         }
         [HttpGet]
-        public async Task<IActionResult> GetTreatments(GetTreatmentsRequest request)
+        public async Task<IActionResult> GetTreatments()
         {
+            GetTreatmentsRequest request = new GetTreatmentsRequest();
             var response = await _treatmentService.GetTreatmentsAsync(request);
             return GenerateResponse(response);
         }

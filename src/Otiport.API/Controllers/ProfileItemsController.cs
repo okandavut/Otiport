@@ -11,6 +11,7 @@ using Otiport.API.Services;
 namespace Otiport.API.Controllers
 {
     [Route("profile-items")]
+    [ApiController]
     public class ProfileItemsController : ApiControllerBase
     {
         private readonly IProfileItemService _profileItemService;
@@ -26,8 +27,9 @@ namespace Otiport.API.Controllers
             return GenerateResponse(response);
         }
         [HttpGet]
-        public async Task<IActionResult> GetProfileItems(GetProfileItemsRequest request)
+        public async Task<IActionResult> GetProfileItems()
         {
+            GetProfileItemsRequest request = new GetProfileItemsRequest();
             var response = await _profileItemService.GetProfileItemsAsync(request);
             return GenerateResponse(response);
         }
